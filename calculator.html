@@ -12,16 +12,16 @@
 		var first = document.getElementById("first");
 		var second = document.getElementById("second");
 		if (operation == "add") {
-			document.getElementById("currentResult").value = first + second;
+			document.getElementById("currentResult").innerHTML = first + second;
 		}
 		else if (operation == "subtract") {
-			document.getElementById("currentResult").value = first - second;
+			document.getElementById("currentResult").innerHTML = first - second;
 		}
 		else if (operation == "multiply") {
-			document.getElementById("currentResult").value = first * second;
+			document.getElementById("currentResult").innerHTML = first * second;
 		}
 		else if (operation == "subtract") {
-			document.getElementById("currentResult").value = first / second;
+			document.getElementById("currentResult").innerHTML = first / second;
 		}
 	}
 	</script>
@@ -31,14 +31,13 @@
 		First number: <input onchange="displayResult()" name="first" id="first"  type="text" /><br />
 		Second number: <input onchange="displayResult()" name="second" id="second" type="text" /><br />
 		Operation: <br />
-		<
 		<input onchange="changeOp('add')" type="radio" name="op" value="add"/> Add <br />
 		<input onchange="changeOp('subtract')" type="radio" name="op" value="subtract"/> Subtract <br />
 		<input onchange="changeOp('multiply')" type="radio" name="op" value="multiply"/> Multiply <br />
 		<input onchange="changeOp('divide')" type="radio" name="op" value="divide"/> Divide <br />
 	</form>
 	<div id="currentResult">
-
+		RESULT
 	</div>
 </body>
 </html>
