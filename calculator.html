@@ -3,6 +3,8 @@
 	<title>Javascript Calculator</title>
 	<script type="text/javascript">
 
+	var operation = "";
+
 	function changeOp(op) {
 		operation = op;
 		displayResult;
@@ -12,10 +14,14 @@
 		var first = document.getElementById("first");
 		var second = document.getElementById("second");
 		if (operation == "add") {
-			document.getElementById("currentResult").innerHTML = first + second;
+			var result = first + second;
+			document.getElementById("currentResult").innerHTML = result;
+			alert(result);
 		}
 		else if (operation == "subtract") {
-			document.getElementById("currentResult").innerHTML = first - second;
+			var result = first - second;
+			document.getElementById("currentResult").innerHTML = result;
+			alert(result);
 		}
 		else if (operation == "multiply") {
 			document.getElementById("currentResult").innerHTML = first * second;
