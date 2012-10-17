@@ -2,20 +2,20 @@
 <html>
 <head>
 	<title>The Weather</title>
+</head>
+<body>
 	<script type="text/javascript">
-
-	function ajaxCallback(event){
-		alert( "Your file contains the text: " + event.target.responseText );
-	}
 
 	var xmlHttp = new XMLHttpRequest();
 	xmlHttp.open("GET", "http://research.engineering.wustl.edu/~todd/cse330/module4/weather_json.php", true);
 	xmlHttp.addEventListener("load", ajaxCallback, false);
 	xmlHttp.send(null);
 	xmlHttp.
+
+	function ajaxCallback(event){
+		alert( "Your file contains the text: " + event.target.responseText );
+	}
 	</script>
-</head>
-<body>
 	<p>Hello World!</p>
 </body>
 </html>
