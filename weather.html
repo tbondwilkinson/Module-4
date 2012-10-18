@@ -15,8 +15,10 @@
 
 	}
 	function ajaxCallback(event){
+		alert("ajaxCallback");
 		var json = JSON.parse(event.target.responseText);
-		document.getElementById("wather-loc").innerHTML = "<strong>" + json.location.city + "</strong> " + json.location.state;
+		document.getElementById("weather-loc").innerHTML = "<strong>" + json.location.city + "</strong> " + json.location.state;
+		alert(json.location.city);
 		document.getElementById("weather-humidity").innerHTML = json.atmosphere.humidity;
 		document.getElementById("weather-temp").innerHTML = json.current.temp;
 		document.getElementById("weather-tomorrow").innerHTML = "<img src=http://us.yimg.com/i/us/nws/weather/gr/" + json.tomorrow.code + "s.png >";
