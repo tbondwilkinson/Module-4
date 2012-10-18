@@ -21,7 +21,7 @@
 		document.getElementById("weather-tomorrow").innerHTML = "<img src=http://us.yimg.com/i/us/nws/weather/gr/" + json.tomorrow.code + "s.png >";
 		docuemnt.getElementById("weather-dayaftertomorrow").innerHTML = "<img src=http://us.yimg.com/i/us/nws/weather/gr/" + json.dayafter.code + "s.png >";
 	}
-	document.addEventListener("DOMContentReady", fetchWeather, false);
+	document.addEventListener("DOMContentLoaded", fetchWeather, false);
 	</script>
 	<div class="weather" id="weatherWidget">
 	<div class="weather-loc"></div>
