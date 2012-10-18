@@ -19,7 +19,7 @@
 		document.getElementsByClassName("weather-humidity")[0].innerHTML = json.atmosphere.humidity;
 		document.getElementsByClassName("weather-temp")[0].innerHTML = json.current.temp;
 		document.getElementsByClassName("weather-tomorrow")[0].innerHTML = "<img src=http://us.yimg.com/i/us/nws/weather/gr/" + json.tomorrow.code + "s.png >";
-		document.getElementByClassName("weather-dayaftertomorrow")[0].innerHTML = "<img src=http://us.yimg.com/i/us/nws/weather/gr/" + json.dayafter.code + "s.png >";
+		document.getElementsByClassName("weather-dayaftertomorrow")[0].innerHTML = "<img src=http://us.yimg.com/i/us/nws/weather/gr/" + json.dayafter.code + "s.png >";
 	}
 	document.addEventListener("DOMContentLoaded", fetchWeather, false);
 	</script>
