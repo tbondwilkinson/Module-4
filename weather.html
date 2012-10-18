@@ -12,6 +12,7 @@
 
 	}
 	function ajaxCallback(event){
+		alert("Fetching weather!");
 		var json = JSON.parse(event.target.responseText);
 		document.getElementById("wather-loc").innerHTML = "<strong>" + json.location.city + "</strong> " + json.location.state;
 		document.getElementById("weather-humidity").innerHTML = json.atmosphere.humidity;
