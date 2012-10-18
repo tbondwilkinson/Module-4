@@ -7,6 +7,7 @@
 <body>
 	<script type="text/javascript">
 	function fetchWeather(){
+		alert("Fetching weather!");
 		var xmlHttp = new XMLHttpRequest();
 		xmlHttp.open("GET", "http://research.engineering.wustl.edu/~todd/cse330/module4/weather_json.php", true);
 		xmlHttp.addEventListener("load", ajaxCallback, false);
@@ -21,6 +22,7 @@
 		document.getElementById("weather-tomorrow").innerHTML = "<img src=http://us.yimg.com/i/us/nws/weather/gr/" + json.tomorrow.code + "s.png >";
 		docuemnt.getElementById("weather-dayaftertomorrow").innerHTML = "<img src=http://us.yimg.com/i/us/nws/weather/gr/" + json.dayafter.code + "s.png >";
 	}
+	document.addEventListener("DOMContentLoaded", function(){ alert('DOM') }, false);
 	document.addEventListener("DOMContentLoaded", fetchWeather, false);
 	</script>
 	<div class="weather" id="weatherWidget">
