@@ -3,9 +3,10 @@
 <head>
 	<title>The Weather</title>
 	<link rel="stylesheet" type="text/css" href=" http://research.engineering.wustl.edu/~todd/cse330/module4/weather.css">
+</head>
+<body>
 	<script type="text/javascript">
-	var fetchWeather = function() {
-		alert("We get here");
+	function fetchWeather(){
 		var xmlHttp = new XMLHttpRequest();
 		xmlHttp.open("GET", "http://research.engineering.wustl.edu/~todd/cse330/module4/weather_json.php", true);
 		xmlHttp.addEventListener("load", ajaxCallback, false);
@@ -20,11 +21,6 @@
 		document.getElementById("weather-tomorrow").innerHTML = "<img src=http://us.yimg.com/i/us/nws/weather/gr/" + json.tomorrow.code + "s.png >";
 		docuemnt.getElementById("weather-dayaftertomorrow").innerHTML = "<img src=http://us.yimg.com/i/us/nws/weather/gr/" + json.dayafter.code + "s.png >";
 	}
-	</script>
-</head>
-<body>
-	<script type="text/javascript">
-	alert("We add the event listener");
 	document.addEventListener("DOMContentReady", fetchWeather, false);
 	</script>
 	<div class="weather" id="weatherWidget">
