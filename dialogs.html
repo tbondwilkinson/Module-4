@@ -17,7 +17,7 @@
 	}
 	function hidedialog(id) {
 		alert("Hiding dialog for " + id);
-		$("#" + id + "_dailog").dialog({
+		$("#" + id + "_img_dailog").dialog({
 			buttons: { 
 				"Hide Icon": function(){ hideIcon(id); } 
 			} 
@@ -32,14 +32,14 @@
 		$("#" + id + "_img").hide(1, function() {alert("We hid the image")});
 	}
 	</script>
-	<script type="text/css">
+	<style>
 	.ui-dialog .ui-dialog-buttonpane { 
 	    text-align: center;
 	}
 	.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset { 
 	    float: none;
 	}
-	</script>
+	</style>
 </head>
 <body>
 	<div id="google_text" onclick=showdialog("google")>Google</div>
