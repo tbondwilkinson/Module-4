@@ -10,14 +10,20 @@
 	function showdialog(id) {
 		$("#" + id + "_dialog").dialog({ 
 			buttons: { 
-				"Show Icon": function(){ showIcon(id); } 
+				"Show Icon": function(){ 
+					showIcon(id);
+					$('#' + id + "_dialog").dialog('close');
+				} 
 			} 
 		});
 	}
 	function hidedialog(id) {
 		$("#" + id + "_img_dialog").dialog({
 			buttons: { 
-				"Hide Icon": function(){ hideIcon(id); } 
+				"Hide Icon": function(){ 
+					hideIcon(id); 
+					$('#' + id + "_img_dialog").dialog('close');
+				} 
 			} 
 		});
 	}
@@ -25,7 +31,7 @@
 		$("#" + id + "_img").show();
 	}
 	function hideIcon(id) {
-		$("#" + id + "_img").hide(1, function() {alert("We hid the image")});
+		$("#" + id + "_img").hide();
 	}
 	</script>
 </head>
