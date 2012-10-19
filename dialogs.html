@@ -11,7 +11,7 @@
 		alert("Showing dialog for " + id);
 		$("#" + id + "_dialog").dialog({ 
 			buttons: { 
-				"Show Icon": showIcon(id) 
+				"Show Icon": function(){ showIcon(id); } 
 			} 
 		});
 	}
@@ -19,7 +19,7 @@
 		alert("Hiding dialog for " + id);
 		$("#" + id + "_dailog").dialog({
 			buttons: { 
-				"Hide Icon": hideIcon(id) 
+				"Hide Icon": function(){ hideIcon(id); } 
 			} 
 		});
 	}
