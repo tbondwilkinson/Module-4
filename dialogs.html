@@ -18,7 +18,11 @@
 	function hidedialog(id) {
 		alert("Hiding dialog for " + id);
 		alert($("#" + id + "_img_dialog"));
-		$("#" + id + "_img_dailog").dialog();
+		$("#" + id + "_img_dialog").dialog({
+			buttons: { 
+				"Hide Icon": function(){ hideIcon(id); } 
+			} 
+		});
 	}
 	function showIcon(id) {
 		alert("Showing an icon for " + id);
@@ -35,8 +39,8 @@
 	<div id="yahoo_text" onclick=showdialog("yahoo")>Yahoo</div>
 	<div id="google_dialog" title="Google Show" style="display:none">SHOW</div>
 	<div id="yahoo_dialog" title="Yahoo Show" style="display:none">SHOW</div>
-	<div id="google_img_dialog" title="Google Hide" style="display:none">HIDE</div>
-	<div id="yahoo_img_dialog" title="Yahoo Hide" style="display:none">HIDE</div>
+	<div id="googleimg_dialog" title="Google Hide" style="display:none">HIDE</div>
+	<div id="yahooimg_dialog" title="Yahoo Hide" style="display:none">HIDE</div>
 	<div id="google_img" style="display:none" onclick=hidedialog("google")><img src="http://www.designcrowd.com/img/blog/google.png"></div>
 	<div id="yahoo_img" style="display:none" onclick=hidedialog("yahoo")><img id="yahoo_img" src="http://t3.gstatic.com/images?q=tbn:ANd9GcS7at4dXZ_Tda-14k5-GhGPY2daApdcZh1ZHQSIRSqCXbfXDGAQRb7WCVlL"></div>
 </body>
