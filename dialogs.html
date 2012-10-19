@@ -7,13 +7,15 @@
 	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.0/jquery-ui.min.js"></script>
 
 	<script type="text/javascript">
-	function showdialog() {
-		$("#Google").dialog();
+	function showdialog(id) {
+		$("#" + id).dialog();
 	}
 	</script>
 </head>
-<body>	
-  <input type="button" value="Show Dialog" onclick=showdialog() />
-  <div id="Google" title="Howdy" style="display:none">Look at me!</div>
+<body>
+	<div id="google_text" onclick=showdialog("google_dialog")>Google</div>
+	<div id="yahoo_text" onclick=showdialog("yahoo_dialog")>Yahoo</div>
+	<div id="google_dialog" title="Google" style="display:none">I'm in a Google dialog</div>
+	<div id="yahoo_dialog" title="Yahoo" style="display:none">I'm in a Yahoo dialog</div>
 </body>
 </html>
