@@ -24,12 +24,20 @@
 		});
 	}
 	function showIcon(id) {
-		alert("Showing an icon");
+		alert("Showing an icon for " + id);
 		$("#" + id + "_img").show();
 	}
 	function hideIcon(id) {
-		alert("Hiding an icon");
-		$("#" + id + "_img").hide();
+		alert("Hiding an icon for " + id);
+		$("#" + id + "_img").hide(1, function() {alert("We hid the image")});
+	}
+	</script>
+	<script type="text/css">
+	.ui-dialog .ui-dialog-buttonpane { 
+	    text-align: center;
+	}
+	.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset { 
+	    float: none;
 	}
 	</script>
 </head>
