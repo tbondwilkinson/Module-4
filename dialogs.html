@@ -8,7 +8,6 @@
 
 	<script type="text/javascript">
 	function showdialog(id) {
-		alert("Showing dialog for " + id);
 		$("#" + id + "_dialog").dialog({ 
 			buttons: { 
 				"Show Icon": function(){ showIcon(id); } 
@@ -16,7 +15,6 @@
 		});
 	}
 	function hidedialog(id) {
-		alert("Hiding dialog for " + id);
 		$("#" + id + "_img_dailog").dialog({
 			buttons: { 
 				"Hide Icon": function(){ hideIcon(id); } 
@@ -24,19 +22,15 @@
 		});
 	}
 	function showIcon(id) {
-		alert("Showing an icon for " + id);
 		$("#" + id + "_img").show();
 	}
 	function hideIcon(id) {
-		alert("Hiding an icon for " + id);
-		$("#" + id + "_img").hide(1, function() {alert("We hid the image")});
+		$("#" + id + "_img").hide();
 	}
 	</script>
 	<style>
-	.ui-dialog .ui-dialog-buttonpane { 
+	.ui-dialog-buttonpane .ui-widget-content .ui-helper-clearfix { 
 	    text-align: center;
-	}
-	.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset { 
 	    float: none;
 	}
 	</style>
