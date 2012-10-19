@@ -17,12 +17,7 @@
 	}
 	function hidedialog(id) {
 		alert("Hiding dialog for " + id);
-		alert($)
-		$("#" + id + "_img_dailog").dialog({
-			buttons: { 
-				"Hide Icon": function(){ hideIcon(id); } 
-			} 
-		});
+		$("#" + id + "_img_dailog").dialog();
 	}
 	function showIcon(id) {
 		alert("Showing an icon for " + id);
