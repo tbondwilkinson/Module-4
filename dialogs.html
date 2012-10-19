@@ -8,10 +8,18 @@
 
 	<script type="text/javascript">
 	function showdialog(id) {
-		$("#" + id + "_dialog").dialog({ buttons: { "Show Icon": showIcon(id) } });
+		$("#" + id + "_dialog").dialog({ 
+			buttons: { 
+				"Show Icon": showIcon(id) 
+			} 
+		});
 	}
 	function hidedialog(id) {
-		$("#" + id + "_dailog").dialog({ buttons: { "Hide Icon": hideIcon(id) } });
+		$("#" + id + "_dailog").dialog({
+			buttons: { 
+				"Hide Icon": hideIcon(id) 
+			} 
+		});
 	}
 	function showIcon(id) {
 		$("#" + id + "_img").show();
@@ -24,11 +32,11 @@
 <body>
 	<div id="google_text" onclick=showdialog("google")>Google</div>
 	<div id="yahoo_text" onclick=showdialog("yahoo")>Yahoo</div>
-	<div id="google_dialog" title="Google" style="display:none"></div>
-	<div id="yahoo_dialog" title="Yahoo" style="display:none"></div>
-	<img id="google_img" src="http://www.designcrowd.com/img/blog/google.png" style="display:none" onclick=hideDialog("google">
-	<img id="yahoo_img" src="http://t3.gstatic.com/images?q=tbn:ANd9GcS7at4dXZ_Tda-14k5-GhGPY2daApdcZh1ZHQSIRSqCXbfXDGAQRb7WCVlL" style="display:none" onclick=hideDialog("yahoo")>
-	<div id="google_img_dialog" title="Google" style="display:none"></div>
-	<div id="yahoo_img_dialog" title="Yahoo" style="display:none"></div>
+	<div id="google_dialog" title="Google" style="display:none">Text goes here</div>
+	<div id="yahoo_dialog" title="Yahoo" style="display:none">Text goes here</div>
+	<div id="google_img" style="display:none" onclick=hideDialog("google")><img src="http://www.designcrowd.com/img/blog/google.png"></div>
+	<div id="yahoo_img" style="display:none" onclick=hideDialog("yahoo")><img id="yahoo_img" src="http://t3.gstatic.com/images?q=tbn:ANd9GcS7at4dXZ_Tda-14k5-GhGPY2daApdcZh1ZHQSIRSqCXbfXDGAQRb7WCVlL"></div>
+	<div id="google_img_dialog" title="Google" style="display:none">Text goes here</div>
+	<div id="yahoo_img_dialog" title="Yahoo" style="display:none">Text goes here</div>
 </body>
 </html>
