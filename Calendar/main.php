@@ -34,7 +34,8 @@ session_start();
 
 	function ajaxCallback(event) {
 		alert("Ajax callback!!");
-		alert(event.target.responseText);	
+		var json = JSON.parse(event.target.responseText);
+		alert(json);
 		$('#calendar').fullCalendar({
 			header: {
 				left: 'prev,next today',
@@ -42,9 +43,7 @@ session_start();
 				right: 'month,basicWeek,basicDay'
 			},
 			editable: true,
-			events: [
-				event.target.responseText
-			]
+			events: json
 		});
 	}
 </script>
