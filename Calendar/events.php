@@ -29,6 +29,8 @@ while($stmt->fetch()) {
 	echo "start: new Date(" . $php_date_str . ")\n";
 	echo "}\n";
 
+	echo  "|";
+
 }
 
 exit;

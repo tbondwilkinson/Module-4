@@ -41,9 +41,14 @@ session_start();
 			},
 			editable: true,
 			events: [
-				event.target.responseText;
 			]
 		});
+	}
+
+	var events = event.target.responseText.split("|");
+
+	for (var i = 0; i< events.length; i++) {
+		$('#calendar').fullCalendar('addEvent', events[i]);
 	}
 
 </script>
