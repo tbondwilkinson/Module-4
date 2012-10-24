@@ -22,7 +22,7 @@
 	 
 	// Bind the results
 	$stmt->bind_result($user);
-	if($stmt->fetch()) {
+	if(!$stmt->fetch()) {
 		$stmt->close();
 		$stmt = $mysqli->prepare("INSERT INTO users (identifier) VALUES (?)");
 		if(!$stmt){
