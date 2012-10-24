@@ -30,5 +30,6 @@ session_start();
 
 	var submit = document.getElementById("user_submit");
 	submit.addEventListener("click", submitUser, false);
+</script>
 </body>
 </html>
