@@ -51,7 +51,7 @@ session_start();
 
 		for (var i = 0; i< events.length; i++) {
 			alert(events[i]);
-			$('#calendar').fullCalendar('addEvent', events[i]);
+			$('#calendar').fullCalendar('renderEvent', events[i], true);
 		}
 	}
 </script>
