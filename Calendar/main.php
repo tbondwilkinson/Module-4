@@ -74,7 +74,7 @@ function handleOpenIDResponse(openid_args) {
   YAHOO.util.Connect.asyncRequest('GET', './openid_finish.php?'+openid_args,
       {'success': function() {
       		alert("success"); 
-      		document.getElementById("bucket").innerHTML = "SUCCESSSSSSSSS";
+      		document.getElementById("bucket").innerHTML = "SUCCESSSSSSSSS <? $_SESSION['identifier']; ?>";
       		$("#ops").show();
          }}); 
 }
