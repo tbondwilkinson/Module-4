@@ -23,7 +23,7 @@ $stmt->execute();
 $stmt->bind_result($name, $datetime);
 
 $first = true;
-echo "[";
+echo "{ \n 'events': [";
 while($stmt->fetch()) {
 	if ($first) {
 		echo "{\n";
@@ -39,6 +39,7 @@ while($stmt->fetch()) {
 	echo "}";
 }
 echo "]";
+echo "}";
 
 exit;
 $stmt->close;
