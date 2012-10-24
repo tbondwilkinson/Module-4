@@ -4,6 +4,10 @@ session_start();
 
 <!DOCTYPE html>
 <head>
+	<link rel='stylesheet' type='text/css' href='../fullcalendar/fullcalendar.css' />
+	<link rel='stylesheet' type='text/css' href='../fullcalendar/fullcalendar.print.css' media='print' />
+
+
     <script type="text/javascript" src="http://yui.yahooapis.com/combo?2.6.0/build/yahoo/yahoo-min.js&2.6.0/build/event/event-min.js&2.6.0/build/connection/connection-min.js"></script> 
 
 	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/start/jquery-ui.css" type="text/css" rel="Stylesheet" />
@@ -32,6 +36,8 @@ session_start();
 	</form>
 </div>
 <div id="bucket"></div>
+
+<div id='calendar'></div>
 
 <script type="text/javascript">
 function getCenteredCoords(width, height) {
@@ -75,7 +81,6 @@ function openGoogleWindow() {
 function handleOpenIDResponse(openid_args) {
   document.getElementById('ops').style.display = 'none';
   document.getElementById('bucket').innerHTML = 'Verifying OpenID response';
-  var w = window.open("./openid_finish.php?" + openid_args, 'openid_popup2', 'width=450,height=500,location=1,status=1,resizable=yes');
   YAHOO.util.Connect.asyncRequest('GET', './openid_finish.php?'+openid_args,
       {'success': function() {
       		alert("success"); 
