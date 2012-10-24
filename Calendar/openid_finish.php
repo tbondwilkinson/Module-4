@@ -1,6 +1,8 @@
 <?php
 
-	echo openid_args;
+	session_start();
+
+	print_r($_GET);
 
 	$usid = @$_SESSION['identifier'] ?: null;
 	unset($_SESSION['identifier']);
