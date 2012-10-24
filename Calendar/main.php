@@ -4,8 +4,8 @@ session_start();
 
 <!DOCTYPE html>
 <head>
-	<link rel='stylesheet' type='text/css' href='http://arshaw.com/fullcalendar/fullcalendar.css' />
-	<link rel='stylesheet' type='text/css' href='http://arshaw.com/fullcalendar/fullcalendar.print.css' media='print' />
+	<link rel='stylesheet' type='text/css' href='http://arshaw.com/js/fullcalendar-1.5.4/fullcalendar/fullcalendar.css' />
+	<link rel='stylesheet' type='text/css' href='http://arshaw.com/js/fullcalendar-1.5.4/fullcalendar/fullcalendar.print.css' media='print' />
 
 
     <script type="text/javascript" src="http://yui.yahooapis.com/combo?2.6.0/build/yahoo/yahoo-min.js&2.6.0/build/event/event-min.js&2.6.0/build/connection/connection-min.js"></script> 
