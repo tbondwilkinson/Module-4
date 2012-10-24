@@ -11,18 +11,15 @@
 
 <div id="ops">
 	<div style="margin-bottom:5px;">
-	    <a href="javascript:openYahooWindow();">
-		<img src="http://www.yahoo.com/favicon.ico" style="border:none;"/> Sign in with a Yahoo! ID</a>
+	    <a href="javascript:openYahooWindow();">Sign in with a Yahoo! ID</a>
 	</div>
 
 	<div style="margin-bottom:5px;">
-	    <a href="javascript:openGoogleWindow();">
-		<img src="http://www.google.com/favicon.ico" style="border:none;"/> Sign in with a Google Account</a>
+	    <a href="javascript:openGoogleWindow();">Sign in with a Google Account</a>
 	</div>
 
 	<div style="margin-bottom:10px;">
-	    <a href="javascript:openMySpaceWindow();">
-		<img src="http://www.myspace.com/favicon.ico" style="border:none;"/> Sign in using MySpaceID</a>
+	    <a href="javascript:openMySpaceWindow();">Sign in using MySpaceID</a>
 	</div>
 
 	Or, use OpenID:
