@@ -1,79 +1,65 @@
 <!DOCTYPE html>
 <head>
+    <script type="text/javascript" src="http://yui.yahooapis.com/combo?2.6.0/build/yahoo/yahoo-min.js&2.6.0/build/event/event-min.js&2.6.0/build/connection/connection-min.js"></script> 
 	<title>Calendar!</title>
 </head>
 <body>
-<form name  action="">
-	<input id="start" name="start" type="hidden" value="true" />
-	<fieldset>
-		<legend>Sign in using OpenID</legend>
-		<div id="openid_choice">
-			<p>Please select your account provider:</p>
-			<select name="identifier">
-				<option value="https://www.google.com/accounts/o8/id">Google</option>
-				<option value="http://yahoo.com/">Yahoo</option>
-			</select>
-		</div>
-		<p>
-			<input id="user_submit" type="submit" value="Sign In"/>
-		</p>
-	</fieldset>
-</form>
+
+<div id="ops">
+	<div style="margin-bottom:5px;">
+	    <a href="javascript:openYahooWindow();">
+		<img src="http://www.yahoo.com/favicon.ico" style="border:none;"/> Sign in with a Yahoo! ID</a>
+	</div>
+
+	<div style="margin-bottom:5px;">
+	    <a href="javascript:openGoogleWindow();">
+		<img src="http://www.google.com/favicon.ico" style="border:none;"/> Sign in with a Google Account</a>
+	</div>
+
+	<div style="margin-bottom:10px;">
+	    <a href="javascript:openMySpaceWindow();">
+		<img src="http://www.myspace.com/favicon.ico" style="border:none;"/> Sign in using MySpaceID</a>
+	</div>
+
+	Or, use OpenID:
+	<form onsubmit="openPopupWindow(document.getElementById('openid_identifier').value)">
+		<input type="text" id="openid_identifier" value="http://" /><input type="submit" value="Sign in"/>
+	</form>
+</div>
+<div id="bucket"></div>
 
 <script type="text/javascript">
-	function submitUser(event) {
-		alert("Submitting user");
-		<?php
-		require_once 'OpenID/RelyingParty.php';
-		require_once 'OpenID/Message.php';
-		require_once 'Net/URL2.php';
-		 
-		session_start();
-		 
-		$realm = "http://ec2-54-245-10-30.us-west-2.compute.amazonaws.com/~tbondwilkinson/Module-4/Calendar/main.php";
-		$returnTo = $realm;
-		 
-		$identifier = @$_POST['identifier'] ?: @$_SESSION['identifier'] ?: null; // note: the @ signs suppress "undefined" notices
-		 
-		$o = new OpenID_RelyingParty($returnTo, $realm, $identifier);
-		 
-		// Part 1: We are processing a login request before visiting the OpenID provider
-		if(@$_POST['start']) {
-			$authRequest = $o->prepare();
-			$url = $authRequest->getAuthorizeURL();
-		 
-			header("Location: ".$url);
-			exit;
-		}
-		 
-		// Part 2: The user is returning to our site after visiting the OpenID provider's site
-		else {
-			$usid = @$_SESSION['identifier'] ?: null;
-			unset($_SESSION['identifier']);
-		 
-			$queryString = count($_POST) ? file_get_contents('php://input') : $_SERVER['QUERY_STRING'];
-		 
-			$message = new OpenID_Message($queryString, OpenID_Message::FORMAT_HTTP);
-		 
-			$result = $o->verify(new Net_URL2($returnTo . '?' . $queryString), $message);
-		 
-			if($result->success()){
-				// Login Success!
-		 
-				// Get the OpenID identifier, which is unique to every OpenID user (i.e. you can use it in your database to
-				// keep track of people between logins), and save it in the session:
-				$_SESSION["openid.identity"] = $message->get("openid.identity");
-		 
-				// Now redirect to the target page for logged-in users
-			}else{
-				// Login Failed.  You can redirect back to the login page or whatever
-			}
-		}
-		?>
-	}
+function openPopupWindow(openid) {
+  document.getElementById('ops').style.display = 'none';
+  document.getElementById('bucket').innerHTML = 'Signing you in <img src="/static/spinner.gif"/>';
+  var w = window.open('/openid_begin?openid_identifier='+encodeURIComponent(openid), 'openid_popup', 'width=450,height=500,location=1,status=1,resizable=yes');
 
-	var submit = document.getElementById("user_submit");
-	submit.addEventListener("click", submitUser, false);
+  var coords = getCenteredCoords(450,500);
+  w.moveTo(coords[0],coords[1]);
+}
+
+function openYahooWindow() {
+  openPopupWindow('yahoo.com');
+}
+
+function openMySpaceWindow() {
+  openPopupWindow('http://www.myspace.com/');
+}
+
+function openGoogleWindow() {
+  openPopupWindow('https://www.google.com/accounts/o8/id');
+}
+
+function handleOpenIDResponse(openid_args) {
+  document.getElementById('ops').style.display = 'none';
+  document.getElementById('bucket').innerHTML = 'Verifying OpenID response';
+  YAHOO.util.Connect.asyncRequest('GET', '/openid_finish?'+openid_args,
+      {'success': function(r) {
+              document.getElementById('bucket').innerHTML = r.responseText; 
+         }}); 
+}
+
+</script>
 </script>
 </body>
 </html>
