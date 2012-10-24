@@ -25,11 +25,9 @@ $stmt->bind_result($name, $datetime);
 while($stmt->fetch()) {
 	echo "{\n";
 	echo "title: " . $name . ",\n";
-	$php_date_str = substr($datetime, 0, 4). ", " . substr($datetime,5,7) . ", " . substr($datetime, 8, 10) . ", " . substr($datetime, 11, 13) . ", " . substr($datetime, 14, 16);
-	echo "start: new Date(" . $php_date_str . "),\n";
+	$php_date_str = substr($datetime, 0, 4). ", " . substr($datetime,5,2) . ", " . substr($datetime, 8, 2) . ", " . substr($datetime, 11, 2) . ", " . substr($datetime, 14, 2);
+	echo "start: new Date(" . $php_date_str . ")\n";
 	echo "}\n";
-
-	echo  "|";
 
 }
 
