@@ -28,7 +28,7 @@ session_start();
 		
 		var xmlHttp = new XMLHttpRequest();
 		xmlHttp.open("GET", "events.php", true);
-		xmlHttp.addEventListener("load", ajaxCallback false);
+		xmlHttp.addEventListener("load", ajaxCallback, false);
 		xmlHttp.send(null);
 	});
 
