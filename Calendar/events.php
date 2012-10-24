@@ -24,9 +24,9 @@ $stmt->bind_result($name, $datetime);
 
 while($stmt->fetch()) {
 	echo "{\n";
-	echo "title: " . $name . "\n";
+	echo "title: " . $name . ",\n";
 	$php_date_str = substr($datetime,0,10).'T'.substr($datetime,11,8);
-	echo "start: new Date(" . $php_date_str . ")\n";
+	echo "start: new Date(" . $php_date_str . "),\n";
 	echo "}\n";
 
 	echo  "|";
