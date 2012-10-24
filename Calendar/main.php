@@ -43,12 +43,12 @@ session_start();
 			events: [
 			]
 		});
-	}
 
-	var events = event.target.responseText.split("|");
+		var events = event.target.responseText.split("|");
 
-	for (var i = 0; i< events.length; i++) {
-		$('#calendar').fullCalendar('addEvent', events[i]);
+		for (var i = 0; i< events.length; i++) {
+			$('#calendar').fullCalendar('addEvent', events[i]);
+		}
 	}
 
 </script>
