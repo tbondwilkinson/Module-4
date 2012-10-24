@@ -25,8 +25,9 @@ $stmt->bind_result($name, $datetime);
 while($stmt->fetch()) {
 	echo "{\n";
 	echo "title: '" . $name . "',\n";
+	// For Javascript's date, it's 0-based indexed.
 	$month = intval(substr($datetime,5,2)) - 1;
-	$php_date_str = substr($datetime, 0, 4). ", " . substr($datetime,5,2) . ", " . substr($datetime, 8, 2) . ", " . substr($datetime, 11, 2) . ", " . substr($datetime, 14, 2);
+	$php_date_str = substr($datetime, 0, 4). ", " . $month . ", " . substr($datetime, 8, 2) . ", " . substr($datetime, 11, 2) . ", " . substr($datetime, 14, 2);
 	echo "start: new Date(" . $php_date_str . ")\n";
 	echo "}\n";
 
