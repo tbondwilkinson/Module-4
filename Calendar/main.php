@@ -34,7 +34,6 @@ session_start();
 
 	function ajaxCallback(event) {
 		alert("Ajax callback!!");
-		alert(new Date(2012, 10, 24, 17, 55));
 		alert(event.target.responseText);	
 		$('#calendar').fullCalendar({
 			header: {
@@ -44,11 +43,7 @@ session_start();
 			},
 			editable: true,
 			events: [
-				{
-				title: 'TEST EVENT!!!',
-				start: new Date(2012, 10, 24, 17, 55)
-				}
-
+				event.target.responseText
 			]
 		});
 	}
