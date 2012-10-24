@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
     <script type="text/javascript" src="http://yui.yahooapis.com/combo?2.6.0/build/yahoo/yahoo-min.js&2.6.0/build/event/event-min.js&2.6.0/build/connection/connection-min.js"></script> 
-    
+
 	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/start/jquery-ui.css" type="text/css" rel="Stylesheet" />
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.0/jquery-ui.min.js"></script>
@@ -78,7 +78,7 @@ function handleOpenIDResponse(openid_args) {
       {'success': function() {
       		alert("success"); 
       		document.getElementById("bucket").innerHTML = "SUCCESSSSSSSSS";
-      		document.getElementById("ops").show();
+      		$("#ops").show();
          }}); 
 }
 
