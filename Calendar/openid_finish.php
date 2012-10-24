@@ -1,7 +1,6 @@
 <?php
 
-	echo $_GET;
-	exit;
+	echo openid_args;
 
 	$usid = @$_SESSION['identifier'] ?: null;
 	unset($_SESSION['identifier']);
@@ -23,4 +22,6 @@
 	}else{
 		// Login Failed.  You can redirect back to the login page or whatever
 	}
+
+	exit;
 ?>
