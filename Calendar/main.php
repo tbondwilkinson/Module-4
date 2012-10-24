@@ -33,6 +33,7 @@ session_start();
 	});
 
 	function ajaxCallback(event) {
+		alert("Ajax callback!!");
 		$('#calendar').fullCalendar({
 			header: {
 				left: 'prev,next today',
@@ -46,11 +47,13 @@ session_start();
 
 		var events = event.target.responseText.split("|");
 
+		alert(events);
+
 		for (var i = 0; i< events.length; i++) {
+			alert(events[i]);
 			$('#calendar').fullCalendar('addEvent', events[i]);
 		}
 	}
-
 </script>
 <style type='text/css'>
 
@@ -90,6 +93,7 @@ session_start();
 </div>
 <div id="bucket"></div>
 
+<div id="addevent"></div>
 <div id='calendar'></div>
 
 <script type="text/javascript">
