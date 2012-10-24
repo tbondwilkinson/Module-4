@@ -34,6 +34,7 @@ session_start();
 
 	function ajaxCallback(event) {
 		alert("Ajax callback!!");
+		alert(event.target.responseText);	
 		$('#calendar').fullCalendar({
 			header: {
 				left: 'prev,next today',
