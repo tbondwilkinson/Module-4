@@ -13,6 +13,9 @@ $o = new OpenID_RelyingParty($returnTo, $realm, $identifier);
 
 $authRequest = $o->prepare();
 $url = $authRequest->getAuthorizeURL();
+
+echo $url;
+exit;
  
 header("Location: ".$url);
 exit;
