@@ -42,17 +42,9 @@ session_start();
 			},
 			editable: true,
 			events: [
+				event.target.responseText
 			]
 		});
-
-		var events = event.target.responseText.split("|");
-
-		alert(events);
-
-		for (var i = 0; i< events.length; i++) {
-			alert(events[i]);
-			$('#calendar').fullCalendar('renderEvent', events[i], true);
-		}
 	}
 </script>
 <style type='text/css'>
