@@ -99,7 +99,7 @@ function ready() {
 	    }
 	}
 
-	$( "#dialog-form" ).dialog({
+	$( "#dialog-form-event" ).dialog({
 	            autoOpen: false,
 	            height: 300,
 	            width: 350,
@@ -133,6 +133,8 @@ function ready() {
 	            }
 			});
 	 
+
+	alert("Button created");
 	$( "#addevent" )
 		.button()
 		.click(function() {
@@ -181,7 +183,7 @@ $(document).ready(ready);
 <div id="bucket"></div>
 
 <div id="addevent_div">
-	<button id="addevent" type="button">Click Me!</button>
+	<button id="addevent" type="button">Add event</button>
 </div>
 <div id="logout"></div>
 <div id="calendar"></div>
