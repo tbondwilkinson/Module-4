@@ -111,7 +111,7 @@ function ready() {
 	 
 	                    bValid = bValid && checkRegexp(title, /^([0-9a-z_])+$/, "Title may consist of a-z, 0-9, underscores, begin with a letter." );
 	                    alert(bValid);
-	                    bValid = bValid && checkRegexp(datetime, /^\d{4}[-]\d{2}[-]\d{2}\s\d{2}[:]\d{2}[:]\d{2}+$/, "YYYY-MM-DD HH:MM:SS" );
+	                    bValid = bValid && checkRegexp(datetime, /^\d{4}[-]\d{2}[-]\d{2}\s\d{2}[:]\d{2}[:]\d{2}$/, "YYYY-MM-DD HH:MM:SS" );
 	                    alert(bValid);
 	 
 	                    if ( bValid ) {
@@ -194,7 +194,7 @@ $(document).ready(ready);
     <form>
     <fieldset>
         <label for="name">Title</label>
-        <input type="text" name="name" id="name" class="text ui-widget-content ui-corner-all" />
+        <input type="text" name="name" id="name" class="text ui-widget-content ui-corner-all" /><br>
         <label for="datetime">Date and time (YYYY-MM-DD HH:MM:SS)</label>
         <input type="text" name="datetime" id="datetime" value="" class="text ui-widget-content ui-corner-all" />
     </fieldset>
