@@ -118,7 +118,6 @@ function ready() {
 	    		$("#calendar").fullCalendar( 'refetchEvents'); }
 	    		, false);
 	    	xmlHttp.send(null);
-	        $( this ).dialog( "close" );
     	});
 }
 
@@ -170,7 +169,7 @@ if (!isset($_SESSION['identifier'])) {
 <div id="addevent_div">
 	<button id="addevent" type="button">Add event</button>
 </div>
-<div id="logout">
+<div id="logout_div">
 	<button id="logout" type="button">Logout</button>
 </div>
 <div id="calendar"></div>
