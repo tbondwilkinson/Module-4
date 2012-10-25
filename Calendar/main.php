@@ -96,9 +96,9 @@ function ready() {
 	                    var bValid = true;
 	                    allFields.removeClass( "ui-state-error" );
 	 
-	                    bValid = bValid && checkRegexp(title, /^([0-9a-z_])+, "Title may consist of a-z, 0-9, underscores, begin with a letter." );
+	                    bValid = bValid && checkRegexp(title, /^([0-9a-z_])+$/, "Title may consist of a-z, 0-9, underscores, begin with a letter." );
 	                    alert(bValid);
-	                    bValid = bValid && checkRegexp(datetime, /^\d{4}[-]\d{2}[-]\d{2}\s\d{2}[:]\d{2}[:]\d{2}+, "YYYY-MM-DD HH:MM:SS" );
+	                    bValid = bValid && checkRegexp(datetime, /^\d{4}[-]\d{2}[-]\d{2}\s\d{2}[:]\d{2}[:]\d{2}+$/, "YYYY-MM-DD HH:MM:SS" );
 	                    alert(bValid);
 	 
 	                    if ( bValid ) {
