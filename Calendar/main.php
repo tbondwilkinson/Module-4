@@ -89,12 +89,10 @@ function ready() {
 	                    alert(bValid);
 	 
 	                    if ( bValid ) {
-	                    	var parameters="title="+title.toString()+"&datetime="+datetime.toString();
 	                    	var xmlHttp = new XMLHttpRequest();
-	                    	xmlHttp.open("POST",  "newevent.php");
-	                    	xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	                    	xmlHttp.open("GET",  "newevent.php?title=" + title.html() + "&datetime=" datetime.html());
 	                    	xmlHttp.addEventListener("load", function () {}, false);
-	                    	xmlHttp.send(parameters);
+	                    	xmlHttp.send(null);
 	                        $( this ).dialog( "close" );
 	                    }
 	                },

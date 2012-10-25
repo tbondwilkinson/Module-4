@@ -13,8 +13,8 @@ if(!$stmt){
 	exit;
 }
 
-$name = $_POST['title'];
-$datetime = $_POST['datetime'];
+$name = $_GET['title'];
+$datetime = $_GET['datetime'];
 $owner = $_SESSION['identifier'];
 $stmt->bind_param('sss', $name, $datetime, $owner);
 $stmt->execute();
