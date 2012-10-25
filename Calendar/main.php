@@ -88,9 +88,9 @@ function ready() {
 	 
 	                    if ( bValid ) {
 	                    	var xmlHttp = new XMLHttpRequest();
-	                    	alert(title.value());
-	                    	alert(datetime.value());
-	                    	xmlHttp.open("GET",  "newevent.php?title=" + title.value() + "&datetime=" + datetime.value());
+	                    	alert(title.val());
+	                    	alert(datetime.val());
+	                    	xmlHttp.open("GET",  "newevent.php?title=" + title.val() + "&datetime=" + datetime.val());
 	                    	xmlHttp.addEventListener("load", function () {}, false);
 	                    	xmlHttp.send(null);
 	                        $( this ).dialog( "close" );
