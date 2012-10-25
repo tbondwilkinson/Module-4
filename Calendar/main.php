@@ -86,6 +86,19 @@ function ready() {
 
 	getEvents();
 
+	var title = $( "#title" ),
+	    datetime = $( "#datetime" ),
+	    allFields = $( [] ).add( title ).add( datetime );
+
+	function checkRegexp( o, regexp, n ) {
+	    if ( !( regexp.test( o.val() ) ) ) {
+	        o.addClass( "ui-state-error" );
+	        return false;
+	    } else {
+	        return true;
+	    }
+	}
+
 	$( "#dialog-form" ).dialog({
 	            autoOpen: false,
 	            height: 300,
