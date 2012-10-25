@@ -115,7 +115,8 @@ function ready() {
 	    	xmlHttp.open("GET",  "logout.php");
 	    	xmlHttp.addEventListener("load", function () {
 	    		$("#calendar").fullCalendar( 'removeEvents');
-	    		$("#calendar").fullCalendar( 'refetchEvents'); }
+	    		$("#calendar").fullCalendar( 'refetchEvents'); 
+	    		$("#ops").show()}
 	    		, false);
 	    	xmlHttp.send(null);
     	});
