@@ -47,31 +47,6 @@ function getEvents() {
 	xmlHttp.send(null);
 }
 
-function addEventCallback(event) {
-
-}
-
-function addEvent(event) {
-	"use strict";
-
-	//REPLACE WITH DIALOG
-	var eventTitle, eventYear, eventMonth, eventDate, eventHour, eventMinute, datetime, xmlHttp;
-	eventTitle = prompt("Event title:", "");
-	eventYear = prompt("Year (YYYY):", "");
-	eventMonth = prompt("Month (MM):", "");
-	eventDate = prompt("Date (DD):", "");
-	eventHour = prompt("Hour:", "");
-	eventMinute = prompt("Minute:", "");
-
-	if (eventTitle !== null && eventYear !== null && eventMonth !== null && eventDate !== null && eventHour !== null && eventMinute !== null) {
-		datetime = eventYear + "-" + eventMonth + "-" + eventDate + " " + eventHour + ":" + eventMinute + ":" + "00";
-		xmlHttp = new XMLHttpRequest();
-		xmlHttp.open("POST", "newevent.php?eventTitle = " + eventTitle + "&datetime=" + datetime, true);
-		xmlHttp.addEventListener("load", addEventCallback, false);
-		xmlHttp.send(null);
-	}
-}
-
 function ready() {
 	"use strict";
 	$('#calendar').fullCalendar({
@@ -116,7 +91,7 @@ function ready() {
 	 
 	                    if ( bValid ) {
 	                    	var parameters="title="+title+"&datetime="+datetime;
-	                    	var xmlhttp = new XMLHttpRequest();
+	                    	var xmlHttp = new XMLHttpRequest();
 	                    	xmlHttp.open("POST",  "newevent.php");
 	                    	xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	                    	xmlhttp.addEventListener("load", addEventCallback, false);
