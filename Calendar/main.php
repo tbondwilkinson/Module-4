@@ -94,7 +94,7 @@ function ready() {
 	                    	xmlHttp.open("POST",  "newevent.php");
 	                    	xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	                    	xmlHttp.addEventListener("load", function () {}, false);
-	                    	mypostrequest.send(parameters);
+	                    	xmlHttp.send(parameters);
 	                        $( this ).dialog( "close" );
 	                    }
 	                },
