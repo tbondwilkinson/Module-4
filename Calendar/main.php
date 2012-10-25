@@ -130,6 +130,9 @@ $(document).ready(ready);
 </head>
 <body>
 
+<?php 
+if (!isset($_SESSION['identifier'])) {
+?>
 <div id="ops">
 	<div style="margin-bottom:5px;">
 	    <a href="javascript:openYahooWindow();">Sign in with a Yahoo! ID</a>
@@ -148,7 +151,9 @@ $(document).ready(ready);
 		<input type="text" id="openid_identifier" value="http://" /><input type="submit" value="Sign in"/>
 	</form>
 </div>
-<div id="bucket"></div>
+<?php
+}
+?>
 
 <div id="addevent_div">
 	<button id="addevent" type="button">Add event</button>
