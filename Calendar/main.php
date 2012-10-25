@@ -111,7 +111,7 @@ function ready() {
 	 
 	                    bValid = bValid && checkRegexp(title, /^([0-9a-z_])+$/, "Title may consist of a-z, 0-9, underscores, begin with a letter." );
 	                    alert(bValid);
-	                    bValid = bValid && checkRegexp(datetime, /^\d{4}[-]\d{2}[-]\d{2}\s\d{2}[:]\d{2}[:]\d{2}$/, "YYYY-MM-DD HH:MM:SS" );
+	                    bValid = bValid && checkRegexp(datetime, /^\d{4}[-](0[1-9]|1[012])[-](0[1-9]|[12][0-9]|3[01])\s\([01][1-9]|2[0123])[:][0-5][0-9][:][0-5][0-9]$/, "YYYY-MM-DD HH:MM:SS" );
 	                    alert(bValid);
 	 
 	                    if ( bValid ) {
