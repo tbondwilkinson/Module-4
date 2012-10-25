@@ -86,7 +86,45 @@ function ready() {
 
 	getEvents();
 
-	$("#addevent").addEventListener("click", addEvent);
+	$( "#dialog-form" ).dialog({
+	            autoOpen: false,
+	            height: 300,
+	            width: 350,
+	            modal: true,
+	            buttons: {
+	                "Create an event": function() {
+	                    var bValid = true;
+	                    allFields.removeClass( "ui-state-error" );
+	 
+	                    bValid = bValid && checkRegexp(title, /^([0-9a-z_]), "Title may consist of a-z, 0-9, underscores, begin with a letter." );
+	                    alert(bValid);
+	                    bValid = bValid && checkRegexp(datetime, /^\d{4}[-]\d{2}[-]\d{2}\s\d{2}[:]\d{2}[:]\d{2}, "YYYY-MM-DD HH:MM:SS" );
+	                    alert(bValid);
+	 
+	                    if ( bValid ) {
+	                    	var parameters="title="+title+"&datetime="+datetime;
+	                    	var xmlhttp = new XMLHttpRequest();
+	                    	xmlHttp.open("POST",  "newevent.php");
+	                    	xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	                    	xmlhttp.addEventListener("load", addEventCallback, false);
+	                    	mypostrequest.send(parameters);
+	                        $( this ).dialog( "close" );
+	                    }
+	                },
+	                Cancel: function() {
+	                    $( this ).dialog( "close" );
+	                }
+	            },
+	            close: function() {
+	                allFields.val( "" ).removeClass( "ui-state-error" );
+	            }
+			});
+	 
+	$( "#addevent" )
+		.button()
+		.click(function() {
+		    $( "#dialog-form-event" ).dialog( "open" );
+    	});
 }
 
 $(document).ready(ready);
@@ -129,11 +167,24 @@ $(document).ready(ready);
 </div>
 <div id="bucket"></div>
 
-<div id="addevent">
+<div id="addevent_div">
 	<button id="addevent" type="button">Click Me!</button>
 </div>
 <div id="logout"></div>
-<div id='calendar'></div>
+<div id="calendar"></div>
+
+<div id="dialog-form-event" title="Create new event">
+    <p class="validateTips">All form fields are required.</p>
+ 
+    <form>
+    <fieldset>
+        <label for="name">Title</label>
+        <input type="text" name="name" id="name" class="text ui-widget-content ui-corner-all" />
+        <label for="datetime">Date and time (YYYY-MM-DD HH:MM:SS)</label>
+        <input type="text" name="datetime" id="datetime" value="" class="text ui-widget-content ui-corner-all" />
+    </fieldset>
+    </form>
+</div>
 
 <script type="text/javascript">
 function getCenteredCoords(width, height) {
