@@ -108,6 +108,18 @@ function ready() {
 		.click(function() {
 		    $( "#dialog-form-event" ).dialog( "open" );
     	});
+	$( "#logout" )
+		.button()
+		.click(function() {
+	    	var xmlHttp = new XMLHttpRequest();
+	    	xmlHttp.open("GET",  "logout.php";
+	    	xmlHttp.addEventListener("load", function () {
+	    		$("#calendar").fullCalendar( 'removeEvents');
+	    		$("#calendar").fullCalendar( 'refetchEvents'); }
+	    		, false);
+	    	xmlHttp.send(null);
+	        $( this ).dialog( "close" );
+    	});
 }
 
 $(document).ready(ready);
@@ -158,7 +170,9 @@ if (!isset($_SESSION['identifier'])) {
 <div id="addevent_div">
 	<button id="addevent" type="button">Add event</button>
 </div>
-<div id="logout"></div>
+<div id="logout">
+	<button id="logout" type="button">Logout</button>
+</div>
 <div id="calendar"></div>
 
 <div id="dialog-form-event" title="Create new event">
