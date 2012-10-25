@@ -36,8 +36,6 @@ session_start();
 		alert("Ajax callback!!");
 		var json = JSON.parse(event.target.responseText);
 
-		alert(json.toString());
-
 		$('#calendar').fullCalendar({
 			header: {
 				left: 'prev,next today',
@@ -94,7 +92,9 @@ session_start();
 </div>
 <div id="bucket"></div>
 
-<div id="addevent"></div>
+<div id="addevent">
+</div>
+<div id="logout"></div>
 <div id='calendar'></div>
 
 <script type="text/javascript">
