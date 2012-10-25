@@ -34,9 +34,10 @@ session_start();
 
 	function ajaxCallback(event) {
 		alert("Ajax callback!!");
-		alert(event.target.responseText);
-		var json = JSON.parse(event.target.responseText);
+		var text = JSON.parse(event.target.responseText);
+
 		alert(json);
+		alert(event.target.responseText);
 		$('#calendar').fullCalendar({
 			header: {
 				left: 'prev,next today',
