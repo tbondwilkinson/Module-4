@@ -112,7 +112,7 @@ function ready() {
 		.button()
 		.click(function() {
 	    	var xmlHttp = new XMLHttpRequest();
-	    	xmlHttp.open("GET",  "logout.php";
+	    	xmlHttp.open("GET",  "logout.php");
 	    	xmlHttp.addEventListener("load", function () {
 	    		$("#calendar").fullCalendar( 'removeEvents');
 	    		$("#calendar").fullCalendar( 'refetchEvents'); }
