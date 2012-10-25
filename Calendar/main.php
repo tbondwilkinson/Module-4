@@ -193,8 +193,8 @@ $(document).ready(ready);
  
     <form>
     <fieldset>
-        <label for="name">Title</label>
-        <input type="text" name="name" id="name" class="text ui-widget-content ui-corner-all" /><br>
+        <label for="title">Title</label>
+        <input type="text" name="title" id="title" class="text ui-widget-content ui-corner-all" /><br>
         <label for="datetime">Date and time (YYYY-MM-DD HH:MM:SS)</label>
         <input type="text" name="datetime" id="datetime" value="" class="text ui-widget-content ui-corner-all" />
     </fieldset>
