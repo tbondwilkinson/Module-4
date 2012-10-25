@@ -208,6 +208,7 @@ function getCenteredCoords(width, height) {
 
 function openPopupWindow(openid) {
   document.getElementById('ops').style.display = 'none';
+  alert("Open popup");
   var w = window.open('./openid_begin.php?openid_identifier='+encodeURIComponent(openid), 'openid_popup', 'width=450,height=500,location=1,status=1,resizable=yes');
 
   var coords = getCenteredCoords(450,500);
@@ -223,16 +224,17 @@ function openMySpaceWindow() {
 }
 
 function openGoogleWindow() {
+	alert("Open Google window");
   openPopupWindow('https://www.google.com/accounts/o8/id');
 }
 
 function handleOpenIDResponse(openid_args) {
   document.getElementById('ops').style.display = 'none';
-  document.getElementById('bucket').innerHTML = 'Verifying OpenID response';
   YAHOO.util.Connect.asyncRequest('GET', './openid_finish.php?'+openid_args,
       {'success': function() {
       		getEvents();
-         }}); 
+         }});
+
 }
 
 </script>
