@@ -19,18 +19,14 @@ session_start();
 	<title>Calendar!</title>
 <script type='text/javascript'>
 
-	$(document).ready(function() {
-	
-		var date = new Date();
-		var d = date.getDate();
-		var m = date.getMonth();
-		var y = date.getFullYear();
-		
+	$(document).ready(drawCalendar);
+
+	function drawCalendar() {
 		var xmlHttp = new XMLHttpRequest();
 		xmlHttp.open("GET", "events.php", true);
 		xmlHttp.addEventListener("load", ajaxCallback, false);
 		xmlHttp.send(null);
-	});
+	}
 
 	function ajaxCallback(event) {
 		alert("Ajax callback!!");
