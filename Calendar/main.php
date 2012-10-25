@@ -89,7 +89,7 @@ function ready() {
 	                    alert(bValid);
 	 
 	                    if ( bValid ) {
-	                    	var parameters="title="+title+"&datetime="+datetime;
+	                    	var parameters="title="+title.html()+"&datetime="+datetime.html();
 	                    	var xmlHttp = new XMLHttpRequest();
 	                    	xmlHttp.open("POST",  "newevent.php");
 	                    	xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
