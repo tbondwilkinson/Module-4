@@ -26,13 +26,16 @@ $events = array();
 
 $i = 0;
 while($stmt->fetch()) {
+	// Sanitize the datetime
+	$datetime = htmlentities($datetime);
+
 	$events[$i] = array();
 	$events[$i]['year'] = substr($datetime, 0, 4);
 	$events[$i]['month'] = intval(substr($datetime, 5, 2)) - 1;
 	$events[$i]['day'] = substr($datetime, 8, 2);
 	$events[$i]['hour'] = substr($datetime, 11, 2);
 	$events[$i]['minute'] = substr($datetime, 14, 2);
-	$events[$i]['title'] = $name;
+	$events[$i]['title'] = htmlentities($name);
 
 	$i++;
 }

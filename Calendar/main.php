@@ -18,42 +18,78 @@ session_start();
 <script type='text/javascript' src='http://arshaw.com/js/fullcalendar-1.5.4/fullcalendar/fullcalendar.min.js'></script>
 	<title>Calendar!</title>
 <script type='text/javascript'>
+/*jslint browser: true*/
+/*global $, document, jQuery, alert, prompt */
 
-	$(document).ready(drawCalendar);
+function getEventsCallback(event) {
+	"use strict";
+	alert("Draw calendar callback!!");
 
-	function drawCalendar() {
-		var xmlHttp = new XMLHttpRequest();
-		xmlHttp.open("GET", "events.php", true);
-		xmlHttp.addEventListener("load", ajaxCallback, false);
+	if (event.target.responseText === "") {
+		return;
+	}
+
+	var json = JSON.parse(event.target.responseText);
+
+	jQuery.each(json, function () {
+		$('#calendar').fullCalendar("renderEvent", {
+			title:  this.title,
+			start: new Date(this.year, this.month, this.day, this.hour, this.minute)
+		}, true);
+	});
+}
+
+function getEvents() {
+	"use strict";
+	var xmlHttp = new XMLHttpRequest();
+	xmlHttp.open("GET", "events.php", true);
+	xmlHttp.addEventListener("load", getEventsCallback, false);
+	xmlHttp.send(null);
+}
+
+function addEventCallback(event) {
+
+}
+
+function addEvent(event) {
+	"use strict";
+
+	//REPLACE WITH DIALOG
+	var eventTitle, eventYear, eventMonth, eventDate, eventHour, eventMinute, datetime, xmlHttp;
+	eventTitle = prompt("Event title:", "");
+	eventYear = prompt("Year (YYYY):", "");
+	eventMonth = prompt("Month (MM):", "");
+	eventDate = prompt("Date (DD):", "");
+	eventHour = prompt("Hour:", "");
+	eventMinute = prompt("Minute:", "");
+
+	if (eventTitle !== null && eventYear !== null && eventMonth !== null && eventDate !== null && eventHour !== null && eventMinute !== null) {
+		datetime = eventYear + "-" + eventMonth + "-" + eventDate + " " + eventHour + ":" + eventMinute + ":" + "00";
+		xmlHttp = new XMLHttpRequest();
+		xmlHttp.open("POST", "newevent.php?eventTitle = " + eventTitle + "&datetime=" + datetime, true);
+		xmlHttp.addEventListener("load", addEventCallback, false);
 		xmlHttp.send(null);
 	}
+}
 
-	function ajaxCallback(event) {
-		alert("Ajax callback!!");
+function ready() {
+	"use strict";
+	$('#calendar').fullCalendar({
+		header: {
+			left: 'prev,next today',
+			center: 'title',
+			right: 'month,basicWeek,basicDay'
+		},
+		editable: true,
+		events: []
+	});
 
-		$('#calendar').fullCalendar({
-			header: {
-				left: 'prev,next today',
-				center: 'title',
-				right: 'month,basicWeek,basicDay'
-			},
-			editable: true,
-			events: []
-		});
+	getEvents();
 
-		if (event.target.responseText === "") {
-			return;
-		}
+	$("#addevent").addEventListener("click", addEvent);
+}
 
-		var json = JSON.parse(event.target.responseText);
-
-		jQuery.each(json, function() {
-			$('#calendar').fullCalendar("renderEvent", {
-				title:  this.title,
-				start: new Date(this.year, this.month, this.day, this.hour, this.minute)
-			}, true);
-		});
-	}
+$(document).ready(ready);
 </script>
 <style type='text/css'>
 
@@ -94,6 +130,7 @@ session_start();
 <div id="bucket"></div>
 
 <div id="addevent">
+	<button id="addevent" type="button">Click Me!</button>
 </div>
 <div id="logout"></div>
 <div id='calendar'></div>
@@ -142,9 +179,7 @@ function handleOpenIDResponse(openid_args) {
   document.getElementById('bucket').innerHTML = 'Verifying OpenID response';
   YAHOO.util.Connect.asyncRequest('GET', './openid_finish.php?'+openid_args,
       {'success': function() {
-      		alert("success"); 
-      		document.getElementById("bucket").innerHTML = "SUCCESSSS";
-
+      		getEvents();
       		$("#ops").show();
          }}); 
 }
