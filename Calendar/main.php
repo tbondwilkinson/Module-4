@@ -189,7 +189,6 @@ function getCenteredCoords(width, height) {
 
 function openPopupWindow(openid) {
   document.getElementById('ops').style.display = 'none';
-  document.getElementById('bucket').innerHTML = 'Signing you in <img src="/static/spinner.gif"/>';
   var w = window.open('./openid_begin.php?openid_identifier='+encodeURIComponent(openid), 'openid_popup', 'width=450,height=500,location=1,status=1,resizable=yes');
 
   var coords = getCenteredCoords(450,500);
@@ -214,7 +213,6 @@ function handleOpenIDResponse(openid_args) {
   YAHOO.util.Connect.asyncRequest('GET', './openid_finish.php?'+openid_args,
       {'success': function() {
       		getEvents();
-      		$("#ops").show();
          }}); 
 }
 
