@@ -26,9 +26,6 @@ $events = array();
 
 $i = 0;
 while($stmt->fetch()) {
-	// Sanitize the datetime
-	$datetime = htmlentities($datetime);
-
 	$events[$i] = array();
 	$events[$i]['year'] = substr($datetime, 0, 4);
 	$events[$i]['month'] = intval(substr($datetime, 5, 2)) - 1;
