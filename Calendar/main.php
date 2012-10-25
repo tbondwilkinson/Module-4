@@ -45,7 +45,7 @@ session_start();
 			events: []
 		});
 
-		if (event.target.responseText == null) {
+		if (event.target.responseText === "") {
 			return;
 		}
 
