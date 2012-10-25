@@ -36,6 +36,8 @@ session_start();
 		alert("Ajax callback!!");
 		var json = JSON.parse(event.target.responseText);
 
+		alert(json.toString());
+
 		$('#calendar').fullCalendar({
 			header: {
 				left: 'prev,next today',
@@ -46,7 +48,7 @@ session_start();
 			events: json
 		});
 
-		jQuery.each(arr, function() {
+		jQuery.each(json, function() {
 			$('#calendar').fullCalendar("renderEvent", {
 				title:  this.title,
 				start: new Date(this.year, this.month, this.day, this.hour, this.minute)
