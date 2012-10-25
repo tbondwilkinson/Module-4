@@ -34,7 +34,7 @@ session_start();
 
 	function ajaxCallback(event) {
 		alert("Ajax callback!!");
-		var text = JSON.parse(event.target.responseText);
+		var json = JSON.parse(event.target.responseText);
 
 		alert(json);
 		alert(event.target.responseText);
