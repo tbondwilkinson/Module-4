@@ -83,6 +83,7 @@ function ready() {
 
 	var title = $( "#title" ),
 	    datetime = $( "#datetime" ),
+	    token = $( "#token"),
 	    allFields = $( [] ).add( title ).add( datetime );
 
 	function checkRegexp( o, regexp, n ) {
@@ -109,7 +110,7 @@ function ready() {
 	 
 	                    if ( bValid ) {
 	                    	var xmlHttp = new XMLHttpRequest();
-	                    	xmlHttp.open("GET",  "newevent.php?title=" + title.val() + "&datetime=" + datetime.val());
+	                    	xmlHttp.open("GET",  "newevent.php?title=" + title.val() + "&datetime=" + datetime.val() "&token=" + token.val());
 	                    	xmlHttp.addEventListener("load", getEventsCallback, false);
 	                    	xmlHttp.send(null);
 	                        $( this ).dialog( "close" );
@@ -206,6 +207,7 @@ if (isset($_SESSION['identifier'])) {
         <input type="text" name="title" id="title" class="text ui-widget-content ui-corner-all" /><br>
         <label for="datetime">Date and time (YYYY-MM-DD HH:MM:SS)</label>
         <input type="text" name="datetime" id="datetime" value="" class="text ui-widget-content ui-corner-all" />
+		<input type="hidden" name="token" id="token" value="<?=$_SESSION['token'];?>" />
     </fieldset>
     </form>
 </div>

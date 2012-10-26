@@ -6,6 +6,7 @@
 	unset($_SESSION['identifier']);
 
 	$_SESSION['identifier'] = $_GET["openid_identity"];
+	$_SESSION['token'] = md5(uniqid(rand(), true));
 
 	// Use a prepared statement
 	$stmt = $mysqli->prepare("SELECT identifier FROM users WHERE identifier=?");

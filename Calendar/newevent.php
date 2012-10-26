@@ -6,6 +6,10 @@ if (!isset($_SESSION['identifier'])) {
 	exit;
 }
 
+if($_SESSION['token'] != $_GET['token']) {
+	exit;
+}
+
 $stmt = $mysqli->prepare("INSERT INTO events (name, datetime, owner) VALUES (?, ?, ?)");
 
 if(!$stmt){
