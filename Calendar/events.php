@@ -32,6 +32,7 @@ while($stmt->fetch()) {
 	$events[$i]['day'] = substr($datetime, 8, 2);
 	$events[$i]['hour'] = substr($datetime, 11, 2);
 	$events[$i]['minute'] = substr($datetime, 14, 2);
+	$events[$i]['seconds'] = substr($datetime, 17, 2);
 	$events[$i]['title'] = htmlentities($name);
 
 	$i++;

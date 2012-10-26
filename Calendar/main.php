@@ -32,9 +32,9 @@ function getEventsCallback(event) {
 
 	jQuery.each(json, function () {
 		$('#calendar').fullCalendar("renderEvent", {
-			id: this.year + this.month + this.day + this.hour + this.minute + this.title,
+			id: this.year + this.month + this.day + this.hour + this.minute + this.second + this.title,
 			title:  this.title,
-			start: new Date(this.year, this.month, this.day, this.hour, this.minute)
+			start: new Date(this.year, this.month, this.day, this.hour, this.minute, this.second)
 		}, true);
 	});
 }
@@ -63,12 +63,12 @@ function ready() {
 	    	if (r==true) {
 	    		$("#calendar").fullCalendar( 'removeEvents', calEvent.id);
 	    		var date = calEvent.start;
-	    		var datetime = date.getUTCFullYear() + '-' + 
-	    			('00' + (date.getUTCMonth()+1)).slice(-2) + '-' + 
-	    			date.getUTCDate() + ' ' + 
-	    			('00' + date.getUTCHours()).slice(-2) + ':' + 
-	    			('00' + date.getUTCMinutes()).slice(-2) + ':' + 
-	    			('00' + date.getUTCSeconds()).slice(-2);
+	    		var datetime = date.getFullYear() + '-' + 
+	    			('00' + (date.getMonth()+1)).slice(-2) + '-' + 
+	    			date.getDate() + ' ' + 
+	    			('00' + date.getHours()).slice(-2) + ':' + 
+	    			('00' + date.getMinutes()).slice(-2) + ':' + 
+	    			('00' + date.getSeconds()).slice(-2);
 	    		var w = window.open('removeevent.php?title=' + calEvent.title + "&datetime=" + datetime, 'openid_popup', 'width=450,height=500,location=1,status=1,resizable=yes');
 	    		var xmlHttp = new XMLHttpRequest();
 	    		xmlHttp.open("GET", "removeevent.php?title=" + calEvent.title + "&datetime=" + datetime, true);
