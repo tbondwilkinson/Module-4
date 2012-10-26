@@ -62,7 +62,8 @@ function ready() {
 	    	if (r==true) {
 	    		$("#calendar").fullCalendar( 'removeEvents', calEvent.id);
 	    		$("#calendar").fullCalendar( 'refetchEvents');
-	    		var datetime = calEvent.start.getUTCFullYear() + '-' + 
+	    		var date = calEvent.start;
+	    		var datetime = date.getUTCFullYear() + '-' + 
 	    			('00' + (date.getUTCMonth()+1)).slice(-2) + '-' + 
 	    			date.getUTCDate() + ' ' + 
 	    			('00' + date.getUTCHours()).slice(-2) + ':' + 
