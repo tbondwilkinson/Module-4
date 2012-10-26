@@ -58,13 +58,18 @@ function ready() {
 		events: [],
 		eventClick: function(calEvent, jsEvent, view) {
 
-	    	var r=confirm(calEvent.title + "\n" + calEvent.dateTime + "\n\n" + "Delete this event?");
+	    	var r=confirm(calEvent.title + "\n" + calEvent.start + "\n\n" + "Delete this event?");
 	    	if (r==true) {
 	    		$("#calendar").fullCalendar( 'removeEvents', calEvent.id);
 	    		$("#calendar").fullCalendar( 'refetchEvents');
-	    		var datetime = calEvent.start;
+	    		var datetime = calEvent.start.getUTCFullYear() + '-' + 
+	    			('00' + (date.getUTCMonth()+1)).slice(-2) + '-' + 
+	    			date.getUTCDate() + ' ' + 
+	    			('00' + date.getUTCHours()).slice(-2) + ':' + 
+	    			('00' + date.getUTCMinutes()).slice(-2) + ':' + 
+	    			('00' + date.getUTCSeconds()).slice(-2);
 	    		alert(datetime);
-	    		alert(calEvent.title);
+	    		alert(new Date(calEvent.start));
 	    		var xmlHttp = new XMLHttpRequest();
 	    		//xmlHttp.open("GET", "removeevent.php?", true);
 	    		//xmlHttp.addEventListener("load", getEventsCallback, false);
