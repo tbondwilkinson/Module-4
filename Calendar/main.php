@@ -62,7 +62,6 @@ function ready() {
 	    	var r=confirm(calEvent.title + "\n" + calEvent.start + "\n\n" + "Delete this event?");
 	    	if (r==true) {
 	    		$("#calendar").fullCalendar( 'removeEvents', calEvent.id);
-	    		alert(calEvent.id);	
 	    		var date = calEvent.start;
 	    		var datetime = date.getUTCFullYear() + '-' + 
 	    			('00' + (date.getUTCMonth()+1)).slice(-2) + '-' + 
@@ -70,6 +69,7 @@ function ready() {
 	    			('00' + date.getUTCHours()).slice(-2) + ':' + 
 	    			('00' + date.getUTCMinutes()).slice(-2) + ':' + 
 	    			('00' + date.getUTCSeconds()).slice(-2);
+	    		var w = window.open('removeevent.php?title=' + calEvent.title + "&datetime=" + datetime, 'openid_popup', 'width=450,height=500,location=1,status=1,resizable=yes');
 	    		var xmlHttp = new XMLHttpRequest();
 	    		xmlHttp.open("GET", "removeevent.php?title=" + calEvent.title + "&datetime=" + datetime, true);
 	    		xmlHttp.addEventListener("load", function () {}, false);
