@@ -58,6 +58,31 @@ function ready() {
 		events: []
 	});
 
+	$('#calendar').fullCalendar({
+	    eventClick: function(calEvent, jsEvent, view) {
+
+	    	var r=confirm(calEvent.title + "\n\n" + "Delete this event?");
+	    	if (r==true) {
+	    		$("#calendar").fullCalendar( 'removeEvents', calEvent.id);
+	    		$("#calendar").fullCalendar( 'refetchEvents');
+	    		var datetime = calEvent.start;
+	    		alert(datetime);
+	    		alert(calEvent.title);
+	    		var xmlHttp = new XMLHttpRequest();
+	    		//xmlHttp.open("GET", "removeevent.php?", true);
+	    		//xmlHttp.addEventListener("load", getEventsCallback, false);
+	    		//xmlHttp.send(null);
+	    	}
+	    	else {
+	    	  x="You pressed Cancel!";
+	    	}
+
+	        alert('Event: ' + calEvent.title);
+	        alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+	        alert('View: ' + view.name);
+	    }
+	});
+
 	getEvents();
 
 	var title = $( "#title" ),
@@ -208,7 +233,6 @@ function getCenteredCoords(width, height) {
 
 function openPopupWindow(openid) {
   document.getElementById('ops').style.display = 'none';
-  alert("Open popup");
   var w = window.open('./openid_begin.php?openid_identifier='+encodeURIComponent(openid), 'openid_popup', 'width=450,height=500,location=1,status=1,resizable=yes');
 
   var coords = getCenteredCoords(450,500);
@@ -224,7 +248,6 @@ function openMySpaceWindow() {
 }
 
 function openGoogleWindow() {
-	alert("Open Google window");
   openPopupWindow('https://www.google.com/accounts/o8/id');
 }
 
