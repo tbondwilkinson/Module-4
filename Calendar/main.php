@@ -59,7 +59,7 @@ function ready() {
 		events: [],
 		eventClick: function(calEvent, jsEvent, view) {
 
-	    	var r=confirm(calEvent.title + "\n" + calEvent.start.getHours() + ":" + calEvent.start.getMinutes() + "\n\n" + "Delete this event?");
+	    	var r=confirm("TITLE: " + calEvent.title + "\nTIME: " + calEvent.start.getHours() + ":" + calEvent.start.getMinutes() + "\n\n" + "Delete this event?");
 	    	if (r==true) {
 	    		$("#calendar").fullCalendar( 'removeEvents', calEvent.id);
 	    		var date = calEvent.start;
@@ -69,7 +69,6 @@ function ready() {
 	    			('00' + date.getHours()).slice(-2) + ':' + 
 	    			('00' + date.getMinutes()).slice(-2) + ':' + 
 	    			('00' + date.getSeconds()).slice(-2);
-	    		var w = window.open('removeevent.php?title=' + calEvent.title + "&datetime=" + datetime, 'openid_popup', 'width=450,height=500,location=1,status=1,resizable=yes');
 	    		var xmlHttp = new XMLHttpRequest();
 	    		xmlHttp.open("GET", "removeevent.php?title=" + calEvent.title + "&datetime=" + datetime, true);
 	    		xmlHttp.addEventListener("load", function () {}, false);
