@@ -97,7 +97,7 @@ function ready() {
 	$( "#dialog-form-event" ).dialog({
 	            autoOpen: false,
 	            height: 300,
-	            width: 350,
+	            width: 500,
 	            modal: true,
 	            buttons: {
 	                "Create an event": function() {
