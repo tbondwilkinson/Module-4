@@ -59,23 +59,10 @@ function ready() {
 		events: [],
 		eventClick: function(calEvent, jsEvent, view) {
 
-	    	var r=confirm("TITLE: " + calEvent.title + "\nTIME: " + calEvent.start.getHours() + ":" + calEvent.start.getMinutes() + "\n\n" + "Delete this event?");
-	    	if (r==true) {
-	    		$("#calendar").fullCalendar( 'removeEvents', calEvent.id);
-	    		var date = calEvent.start;
-	    		var datetime = date.getFullYear() + '-' + 
-	    			('00' + (date.getMonth()+1)).slice(-2) + '-' + 
-	    			date.getDate() + ' ' + 
-	    			('00' + date.getHours()).slice(-2) + ':' + 
-	    			('00' + date.getMinutes()).slice(-2) + ':' + 
-	    			('00' + date.getSeconds()).slice(-2);
-	    		var xmlHttp = new XMLHttpRequest();
-	    		xmlHttp.open("GET", "removeevent.php?title=" + calEvent.title + "&datetime=" + datetime, true);
-	    		xmlHttp.addEventListener("load", function () {}, false);
-	    		xmlHttp.send(null);
-	    	}
-	    	else {
-	    	}
+			$("#dialog-delete-event").attr("title", calEvent.title);
+			$("dialog-delete-event").html("<p>This event is set for time" + calEvent.start.getHours() + ":" + calEvent.start.getMinutes() + "<p>");
+			$( "#dialog-delete-event" ).dialog( "open" );
+
 	    }
 	});
 
@@ -114,6 +101,35 @@ function ready() {
 	                    	xmlHttp.send(null);
 	                        $( this ).dialog( "close" );
 	                    }
+	                },
+	                Cancel: function() {
+	                    $( this ).dialog( "close" );
+	                }
+	            },
+	            close: function() {
+	                allFields.val( "" ).removeClass( "ui-state-error" );
+	            }
+			});
+
+	$( "#dialog-delete-event" ).dialog({
+	            autoOpen: false,
+	            height: 300,
+	            width: 300,
+	            modal: true,
+	            buttons: {
+	                "Delete event": function() {
+	                	$("#calendar").fullCalendar( 'removeEvents', calEvent.id);
+	                	var date = calEvent.start;
+	                	var datetime = date.getFullYear() + '-' + 
+	                		('00' + (date.getMonth()+1)).slice(-2) + '-' + 
+	                		date.getDate() + ' ' + 
+	                		('00' + date.getHours()).slice(-2) + ':' + 
+	                		('00' + date.getMinutes()).slice(-2) + ':' + 
+	                		('00' + date.getSeconds()).slice(-2);
+	                	var xmlHttp = new XMLHttpRequest();
+	                	xmlHttp.open("GET", "removeevent.php?title=" + calEvent.title + "&datetime=" + datetime, true);
+	                	xmlHttp.addEventListener("load", function () {}, false);
+	                	xmlHttp.send(null);
 	                },
 	                Cancel: function() {
 	                    $( this ).dialog( "close" );
@@ -208,6 +224,8 @@ if (isset($_SESSION['identifier'])) {
         <input type="text" name="datetime" id="datetime" value="" class="text ui-widget-content ui-corner-all" />
     </fieldset>
     </form>
+</div>
+<div id="dialog-delete-event" title="">
 </div>
 
 <script type="text/javascript">
