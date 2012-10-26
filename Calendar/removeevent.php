@@ -6,6 +6,10 @@ if (!isset($_SESSION['identifier'])) {
 	exit;
 }
 
+echo $_GET['title'];
+echo $_GET['datetime'];
+echo $_SESSION['identifier'];
+
 $stmt = $mysqli->prepare("DELETE FROM events WHERE name = ? and datetime = ? and owner = ?");
 
 if(!$stmt){
