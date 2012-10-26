@@ -70,12 +70,10 @@ function ready() {
 	    			('00' + date.getUTCHours()).slice(-2) + ':' + 
 	    			('00' + date.getUTCMinutes()).slice(-2) + ':' + 
 	    			('00' + date.getUTCSeconds()).slice(-2);
-	    		alert(datetime);
-	    		alert(new Date(calEvent.start));
 	    		var xmlHttp = new XMLHttpRequest();
-	    		//xmlHttp.open("GET", "removeevent.php?", true);
-	    		//xmlHttp.addEventListener("load", getEventsCallback, false);
-	    		//xmlHttp.send(null);
+	    		xmlHttp.open("GET", "removeevent.php?title=" + calEvent.title + "&datetime=" + datetime, true);
+	    		xmlHttp.addEventListener("load", function () {}, false);
+	    		xmlHttp.send(null);
 	    	}
 	    	else {
 	    	}
