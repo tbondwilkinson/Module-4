@@ -20,4 +20,7 @@ $stmt->bind_param('sss', $name, $datetime, $owner);
 $stmt->execute();
 
 $stmt->close();
+
+echo "success";
+exit;
 ?>
