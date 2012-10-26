@@ -31,7 +31,13 @@ function getEventsCallback(event) {
 	var json = JSON.parse(event.target.responseText);
 
 	jQuery.each(json, function () {
-		alert(this.toString());
+		alert(this.year);
+		alert(this.month);
+		alert(this.day);
+		alert(this.hour);
+		alert(this.minute);
+		alert(this.second);
+		alert(this.title);
 		$('#calendar').fullCalendar("renderEvent", {
 			id: this.year + this.month + this.day + this.hour + this.minute + this.second + this.title,
 			title:  this.title,
