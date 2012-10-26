@@ -159,9 +159,6 @@ $(document).ready(ready);
 </head>
 <body>
 
-<?php 
-if (!isset($_SESSION['identifier'])) {
-?>
 <div id="ops">
 	<div style="margin-bottom:5px;">
 	    <a href="javascript:openYahooWindow();">Sign in with a Yahoo! ID</a>
@@ -180,7 +177,11 @@ if (!isset($_SESSION['identifier'])) {
 		<input type="text" id="openid_identifier" value="http://" /><input type="submit" value="Sign in"/>
 	</form>
 </div>
-<?php
+
+<?php 
+if (isset($_SESSION['identifier'])) {
+	echo "<script language ='javascript'>$('#ops').hide();";
+	echo "</script>";
 }
 ?>
 
