@@ -48,20 +48,17 @@ function getEvents() {
 
 function ready() {
 	"use strict";
-	$('#calendar').fullCalendar({
+	$('#calendar').once('calendar').fullCalendar({
 		header: {
 			left: 'prev,next today',
 			center: 'title',
 			right: 'month,basicWeek,basicDay'
 		},
 		editable: true,
-		events: []
-	});
+		events: [],
+		eventClick: function(calEvent, jsEvent, view) {
 
-	$('#calendar').fullCalendar({
-	    eventClick: function(calEvent, jsEvent, view) {
-
-	    	var r=confirm(calEvent.title + "\n\n" + "Delete this event?");
+	    	var r=confirm(calEvent.title + "\n" + calEvent.dateTime + "\n\n" + "Delete this event?");
 	    	if (r==true) {
 	    		$("#calendar").fullCalendar( 'removeEvents', calEvent.id);
 	    		$("#calendar").fullCalendar( 'refetchEvents');
@@ -74,12 +71,7 @@ function ready() {
 	    		//xmlHttp.send(null);
 	    	}
 	    	else {
-	    	  x="You pressed Cancel!";
 	    	}
-
-	        alert('Event: ' + calEvent.title);
-	        alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
-	        alert('View: ' + view.name);
 	    }
 	});
 
