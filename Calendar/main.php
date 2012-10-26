@@ -59,7 +59,7 @@ function ready() {
 		events: [],
 		eventClick: function(calEvent, jsEvent, view) {
 
-	    	var r=confirm(calEvent.title + "\n" + calEvent.start + "\n\n" + "Delete this event?");
+	    	var r=confirm(calEvent.title + "\n" + calEvent.start.getHours() + ":" + calEvent.start.getMinutes() + "\n\n" + "Delete this event?");
 	    	if (r==true) {
 	    		$("#calendar").fullCalendar( 'removeEvents', calEvent.id);
 	    		var date = calEvent.start;
