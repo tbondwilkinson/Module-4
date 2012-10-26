@@ -110,7 +110,7 @@ function ready() {
 	 
 	                    if ( bValid ) {
 	                    	var xmlHttp = new XMLHttpRequest();
-	                    	xmlHttp.open("GET",  "newevent.php?title=" + title.val() + "&datetime=" + datetime.val() "&token=" + token.val());
+	                    	xmlHttp.open("GET",  "newevent.php?title=" + title.val() + "&datetime=" + datetime.val() + "&token=" + token.val());
 	                    	xmlHttp.addEventListener("load", getEventsCallback, false);
 	                    	xmlHttp.send(null);
 	                        $( this ).dialog( "close" );
