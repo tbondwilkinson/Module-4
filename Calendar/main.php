@@ -48,7 +48,7 @@ function getEvents() {
 
 function ready() {
 	"use strict";
-	$('#calendar').once('calendar').fullCalendar({
+	jQuery('#calendar').once('calendar').fullCalendar({
 		header: {
 			left: 'prev,next today',
 			center: 'title',
