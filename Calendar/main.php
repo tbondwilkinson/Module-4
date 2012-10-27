@@ -116,25 +116,22 @@ function ready() {
 		modal: true,
 		buttons: {
 			"Delete this event": function (e) {
-				var calEvent = $("#dialog-delete-event").data("calEvent");
+				var r, date, datetime, xmlHttp, calEvent;
+				calEvent = $("#dialog-delete-event").data("calEvent");
 				alert(calEvent.title);
 
-				var r, date, datetime, xmlHttp;
-				r = confirm("TITLE: " + calEvent.title + "\nTIME: " + calEvent.start.getHours() + ":" + calEvent.start.getMinutes() + "\n\n" + "Delete this event?");
-				if (r === true) {
-					$("#calendar").fullCalendar('removeEvents', calEvent.id);
-					date = calEvent.start;
-					datetime = date.getFullYear() + '-' +
-						('00' + (date.getMonth() + 1)).slice(-2) + '-' +
-						date.getDate() + ' ' +
-						('00' + date.getHours()).slice(-2) + ':' +
-						('00' + date.getMinutes()).slice(-2) + ':' +
-						('00' + date.getSeconds()).slice(-2);
-					xmlHttp = new XMLHttpRequest();
-					xmlHttp.open("GET", "removeevent.php?title=" + calEvent.title + "&datetime=" + datetime, true);
-					xmlHttp.addEventListener("load", function () {}, false);
-					xmlHttp.send(null);
-				}
+				$("#calendar").fullCalendar('removeEvents', calEvent.id);
+				date = calEvent.start;
+				datetime = date.getFullYear() + '-' +
+					('00' + (date.getMonth() + 1)).slice(-2) + '-' +
+					date.getDate() + ' ' +
+					('00' + date.getHours()).slice(-2) + ':' +
+					('00' + date.getMinutes()).slice(-2) + ':' +
+					('00' + date.getSeconds()).slice(-2);
+				xmlHttp = new XMLHttpRequest();
+				xmlHttp.open("GET", "removeevent.php?title=" + calEvent.title + "&datetime=" + datetime, true);
+				xmlHttp.addEventListener("load", function () {}, false);
+				xmlHttp.send(null);
 			},
 			Cancel: function () {
 				$(this).dialog("close");
