@@ -60,10 +60,8 @@ function ready() {
 		events: [],
 		eventClick: function (calEvent) {
 			$("#dialog-delete-event").data("calEvent", calEvent);
-			$("#dialog-delete-event").dialog('option', 'title', calEvent);
+			$("#dialog-delete-event").dialog('option', 'title', calEvent.title);
 			$("#time").text("Time: " + calEvent.start);
-
-			$("#time").html(calEvent.start);
 
 			$("#dialog-delete-event").dialog('open');
 		}
