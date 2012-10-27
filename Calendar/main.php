@@ -47,6 +47,7 @@ function getEvents() {
 	xmlHttp.send(null);
 }
 
+
 function ready() {
 	"use strict";
 	$('#calendar').fullCalendar({
@@ -58,7 +59,10 @@ function ready() {
 		editable: true,
 		events: [],
 		eventClick: function (calEvent) {
-			$("#dialog-delete-event").data('calEvent', calEvent);
+			$("#dialog-delete-event").data("calEvent", calEvent);
+			$("#dialog-delete-event").attr("title", calEvent.title);
+
+			$("time").html(calEvent.start);
 
 			$("#dialog-delete-event").dialog('open');
 		}
@@ -112,7 +116,10 @@ function ready() {
 		width: 500,
 		modal: true,
 		buttons: {
-			"Delete this event": function () {
+			"Delete this event": function (e) {
+
+				calEvent = $this.data("calEvent");
+
 				var r, date, datetime, xmlHttp;
 				r = confirm("TITLE: " + calEvent.title + "\nTIME: " + calEvent.start.getHours() + ":" + calEvent.start.getMinutes() + "\n\n" + "Delete this event?");
 				if (r === true) {
@@ -280,8 +287,7 @@ if (isset($_SESSION['identifier'])) {
 	</form>
 </div>
 
-<div id="dialog-delete-event" title="Create new event">
-	<h id="title"></h>
+<div id="dialog-delete-event" title="">
 	<p id="time"></p>
 </div>
 </body>
