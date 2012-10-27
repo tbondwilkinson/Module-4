@@ -118,7 +118,6 @@ function ready() {
 			"Delete this event": function (e) {
 				var r, date, datetime, xmlHttp, calEvent;
 				calEvent = $("#dialog-delete-event").data("calEvent");
-				alert(calEvent.title);
 
 				$("#calendar").fullCalendar('removeEvents', calEvent.id);
 				date = calEvent.start;
