@@ -132,6 +132,7 @@ function ready() {
 				xmlHttp.open("GET", "removeevent.php?title=" + calEvent.title + "&datetime=" + datetime, true);
 				xmlHttp.addEventListener("load", function () {}, false);
 				xmlHttp.send(null);
+				$(this).dialog("close");
 			},
 			Cancel: function () {
 				$(this).dialog("close");
