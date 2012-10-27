@@ -111,8 +111,8 @@ function ready() {
 
 	$("#dialog-delete-event").dialog({
 		autoOpen: false,
-		height: 300,
-		width: 500,
+		height: 250,
+		width: 300,
 		modal: true,
 		buttons: {
 			"Delete this event": function (e) {
