@@ -116,9 +116,8 @@ function ready() {
 		modal: true,
 		buttons: {
 			"Delete this event": function (e) {
-				alert($(e.target));
-				var $this = $(e.target),
-				    calEvent = $this.data("calEvent");
+				var calEvent = $("#dialog-delete-event").data("calEvent");
+				alert(calEvent.title);
 
 				var r, date, datetime, xmlHttp;
 				r = confirm("TITLE: " + calEvent.title + "\nTIME: " + calEvent.start.getHours() + ":" + calEvent.start.getMinutes() + "\n\n" + "Delete this event?");
