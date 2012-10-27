@@ -117,6 +117,7 @@ function ready() {
 		modal: true,
 		buttons: {
 			"Delete this event": function (e) {
+				alert($e.target);
 				var $this = $(e.target),
 				    calEvent = $this.data("calEvent");
 
