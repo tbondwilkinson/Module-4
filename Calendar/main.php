@@ -60,9 +60,7 @@ function ready() {
 		events: [],
 		eventClick: function (calEvent) {
 			$("#dialog-delete-event").data("calEvent", calEvent);
-			alert(calEvent.title);
-			alert(("#dialog-delete-event").attr('title'));
-			$("#dialog-delete-event").attr('title', calEvent.title);
+			//$("#dialog-delete-event").attr('title', calEvent.title);
 
 			$("#time").html(calEvent.start);
 
@@ -289,7 +287,7 @@ if (isset($_SESSION['identifier'])) {
 	</form>
 </div>
 
-<div id="dialog-delete-event" title="">
+<div id="dialog-delete-event" title="HELLO">
 	<p id="time"></p>
 </div>
 </body>
