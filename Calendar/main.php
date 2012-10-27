@@ -8,7 +8,7 @@ session_start();
 	<link rel='stylesheet' type='text/css' href='http://arshaw.com/js/fullcalendar-1.5.4/fullcalendar/fullcalendar.print.css' media='print' />
 
 
-    <script type="text/javascript" src="http://yui.yahooapis.com/combo?2.6.0/build/yahoo/yahoo-min.js&amp;2.6.0/build/event/event-min.js&amp;2.6.0/build/connection/connection-min.js"></script> 
+	<script type="text/javascript" src="http://yui.yahooapis.com/combo?2.6.0/build/yahoo/yahoo-min.js&amp;2.6.0/build/event/event-min.js&amp;2.6.0/build/connection/connection-min.js"></script> 
 
 	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/start/jquery-ui.css" type="text/css" rel="Stylesheet" />
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
@@ -19,7 +19,7 @@ session_start();
 	<title>Calendar!</title>
 <script type='text/javascript'>
 /*jslint browser: true*/
-/*global $, document, jQuery, alert, prompt */
+/*global $, document, jQuery, YAHOO, confirm */
 
 function getEventsCallback(event) {
 	"use strict";
@@ -57,91 +57,159 @@ function ready() {
 		},
 		editable: true,
 		events: [],
-		eventClick: function(calEvent, jsEvent, view) {
+		eventClick: function (calEvent) {
+			$("#dialog-delete-event").data('calEvent', calEvent);
 
-	    	var r=confirm("TITLE: " + calEvent.title + "\nTIME: " + calEvent.start.getHours() + ":" + calEvent.start.getMinutes() + "\n\n" + "Delete this event?");
-	    	if (r==true) {
-	    		$("#calendar").fullCalendar( 'removeEvents', calEvent.id);
-	    		var date = calEvent.start;
-	    		var datetime = date.getFullYear() + '-' + 
-	    			('00' + (date.getMonth()+1)).slice(-2) + '-' + 
-	    			date.getDate() + ' ' + 
-	    			('00' + date.getHours()).slice(-2) + ':' + 
-	    			('00' + date.getMinutes()).slice(-2) + ':' + 
-	    			('00' + date.getSeconds()).slice(-2);
-	    		var xmlHttp = new XMLHttpRequest();
-	    		xmlHttp.open("GET", "removeevent.php?title=" + calEvent.title + "&datetime=" + datetime, true);
-	    		xmlHttp.addEventListener("load", function () {}, false);
-	    		xmlHttp.send(null);
-	    	}
-	    	else {
-	    	}
-	    }
+			$("#dialog-delete-event").dialog('open');
+		}
 	});
 
 	getEvents();
 
-	var title = $( "#title" ),
-	    datetime = $( "#datetime" ),
-	    token = $( "#token"),
-	    allFields = $( [] ).add( title ).add( datetime );
+	var title = $("#title"),
+		datetime = $("#datetime"),
+		token = $("#token"),
+		allFields = $([]).add(title).add(datetime);
 
-	function checkRegexp( o, regexp, n ) {
-	    if ( !( regexp.test( o.val() ) ) ) {
-	        o.addClass( "ui-state-error" );
-	        return false;
-	    } else {
-	        return true;
-	    }
+	function checkRegexp(o, regexp) {
+		if (!(regexp.test(o.val()))) {
+			o.addClass("ui-state-error");
+			return false;
+		}
+		return true;
 	}
 
-	$( "#dialog-form-event" ).dialog({
-	            autoOpen: false,
-	            height: 300,
-	            width: 500,
-	            modal: true,
-	            buttons: {
-	                "Create an event": function() {
-	                    var bValid = true;
-	                    allFields.removeClass( "ui-state-error" );
-	 
-	                    bValid = bValid && checkRegexp(title, /^([0-9a-zA-Z_ ])+$/, "Title may consist of a-z, 0-9, underscores, begin with a letter." );
-	                    bValid = bValid && checkRegexp(datetime, /^\d{4}[-](0[1-9]|1[012])[-](0[1-9]|[12][0-9]|3[01])\s([01][1-9]|2[0123])[:]([0-5][0-9])[:]([0-5][0-9])$/, "YYYY-MM-DD HH:MM:SS" );
-	 
-	                    if ( bValid ) {
-	                    	var xmlHttp = new XMLHttpRequest();
-	                    	xmlHttp.open("GET",  "newevent.php?title=" + title.val() + "&datetime=" + datetime.val() + "&token=" + token.val());
-	                    	xmlHttp.addEventListener("load", getEventsCallback, false);
-	                    	xmlHttp.send(null);
-	                        $( this ).dialog( "close" );
-	                    }
-	                },
-	                Cancel: function() {
-	                    $( this ).dialog( "close" );
-	                }
-	            },
-	            close: function() {
-	                allFields.val( "" ).removeClass( "ui-state-error" );
-	            }
-			});
-	 
-	$( "#addevent" )
+	$("#dialog-form-event").dialog({
+		autoOpen: false,
+		height: 300,
+		width: 500,
+		modal: true,
+		buttons: {
+			"Create an event": function () {
+				var bValid = true;
+				allFields.removeClass( "ui-state-error" );
+				
+				bValid = bValid && checkRegexp(title, /^([0-9a-zA-Z_ ])+$/, "Title may consist of a-z, 0-9, underscores, begin with a letter." );
+				bValid = bValid && checkRegexp(datetime, /^\d{4}[-](0[1-9]|1[012])[-](0[1-9]|[12][0-9]|3[01])\s([01][1-9]|2[0123])[:]([0-5][0-9])[:]([0-5][0-9])$/, "YYYY-MM-DD HH:MM:SS" );
+				
+				if ( bValid ) {
+					var xmlHttp = new XMLHttpRequest();
+					xmlHttp.open("GET",  "newevent.php?title=" + title.val() + "&datetime=" + datetime.val() + "&token=" + token.val());
+					xmlHttp.addEventListener("load", getEventsCallback, false);
+					xmlHttp.send(null);
+				    $( this ).dialog( "close" );
+				}
+			},
+			Cancel: function () {
+				$(this).dialog("close");
+			}
+		}
+	});
+
+	$("#dialog-delete-event").dialog({
+		autoOpen: false,
+		height: 300,
+		width: 500,
+		modal: true,
+		buttons: {
+			"Delete this event": function () {
+				var r, date, datetime, xmlHttp;
+				r = confirm("TITLE: " + calEvent.title + "\nTIME: " + calEvent.start.getHours() + ":" + calEvent.start.getMinutes() + "\n\n" + "Delete this event?");
+				if (r === true) {
+					$("#calendar").fullCalendar('removeEvents', calEvent.id);
+					date = calEvent.start;
+					datetime = date.getFullYear() + '-' +
+						('00' + (date.getMonth() + 1)).slice(-2) + '-' +
+						date.getDate() + ' ' +
+						('00' + date.getHours()).slice(-2) + ':' +
+						('00' + date.getMinutes()).slice(-2) + ':' +
+						('00' + date.getSeconds()).slice(-2);
+					xmlHttp = new XMLHttpRequest();
+					xmlHttp.open("GET", "removeevent.php?title=" + calEvent.title + "&datetime=" + datetime, true);
+					xmlHttp.addEventListener("load", function () {}, false);
+					xmlHttp.send(null);
+				}
+			},
+			Cancel: function () {
+				$(this).dialog("close");
+			}
+		},
+		close: function () {
+			allFields.val("").removeClass("ui-state-error");
+		}
+	});
+
+	$("#addevent")
 		.button()
-		.click(function() {
-		    $( "#dialog-form-event" ).dialog( "open" );
-    	});
-	$( "#logout" )
+		.click(function () {
+			$("#dialog-form-event").dialog("open");
+		});
+	$("#logout")
 		.button()
-		.click(function() {
-	    	var xmlHttp = new XMLHttpRequest();
-	    	xmlHttp.open("GET",  "logout.php");
-	    	xmlHttp.addEventListener("load", function () {
-	    		$("#calendar").fullCalendar( 'removeEvents');
-	    		$("#calendar").fullCalendar( 'refetchEvents'); 
-	    		$("#ops").show()}
-	    		, false);
-	    	xmlHttp.send(null);
-    	});
+		.click(function () {
+			var xmlHttp = new XMLHttpRequest();
+			xmlHttp.open("GET", "logout.php");
+			xmlHttp.addEventListener("load", function () {
+				$("#calendar").fullCalendar('removeEvents');
+				$("#calendar").fullCalendar('refetchEvents');
+				$("#ops").show();
+			},
+				false);
+			xmlHttp.send(null);
+		});
+}
+
+function getCenteredCoords(width, height) {
+	"use strict";
+	var xPos, yPos, parentSize, parentPos;
+	xPos = null;
+	yPos = null;
+	if (window.ActiveXObject) {
+		xPos = window.event.screenX - (width / 2) + 100;
+		yPos = window.event.screenY - (height / 2) - 100;
+	} else {
+		parentSize = [window.outerWidth, window.outerHeight];
+		parentPos = [window.screenX, window.screenY];
+		xPos = parentPos[0] +
+			Math.max(0, Math.floor((parentSize[0] - width) / 2));
+		yPos = parentPos[1] +
+			Math.max(0, Math.floor((parentSize[1] - (height * 1.25)) / 2));
+	}
+	return [xPos, yPos];
+}
+
+function openPopupWindow(openid) {
+	"use strict";
+	document.getElementById('ops').style.display = 'none';
+	var w, coords;
+	w = window.open('./openid_begin.php?openid_identifier=' + encodeURIComponent(openid), 'openid_popup', 'width=450,height=500,location=1,status=1,resizable=yes');
+
+	coords = getCenteredCoords(450, 500);
+	w.moveTo(coords[0], coords[1]);
+}
+
+function openYahooWindow() {
+	"use strict";
+	openPopupWindow('yahoo.com');
+}
+
+function openMySpaceWindow() {
+	"use strict";
+	openPopupWindow('http://www.myspace.com/');
+}
+
+function openGoogleWindow() {
+	"use strict";
+	openPopupWindow('https://www.google.com/accounts/o8/id');
+}
+
+function handleOpenIDResponse(openid_args) {
+	"use strict";
+	document.getElementById('ops').style.display = 'none';
+	YAHOO.util.Connect.asyncRequest('GET', './openid_finish.php?' + openid_args,
+		{'success': function () {
+			getEvents();
+		}});
 }
 
 $(document).ready(ready);
@@ -166,15 +234,15 @@ $(document).ready(ready);
 
 <div id="ops">
 	<div style="margin-bottom:5px;">
-	    <a href="javascript:openYahooWindow();">Sign in with a Yahoo! ID</a>
+		<a href="javascript:openYahooWindow();">Sign in with a Yahoo! ID</a>
 	</div>
 
 	<div style="margin-bottom:5px;">
-	    <a href="javascript:openGoogleWindow();">Sign in with a Google Account</a>
+		<a href="javascript:openGoogleWindow();">Sign in with a Google Account</a>
 	</div>
 
 	<div style="margin-bottom:10px;">
-	    <a href="javascript:openMySpaceWindow();">Sign in using MySpaceID</a>
+		<a href="javascript:openMySpaceWindow();">Sign in using MySpaceID</a>
 	</div>
 
 	Or, use OpenID:
@@ -199,66 +267,22 @@ if (isset($_SESSION['identifier'])) {
 <div id="calendar"></div>
 
 <div id="dialog-form-event" title="Create new event">
-    <p class="validateTips">All form fields are required.</p>
+	<p class="validateTips">All form fields are required.</p>
  
-    <form>
-    <fieldset>
-        <label for="title">Title</label>
-        <input type="text" name="title" id="title" class="text ui-widget-content ui-corner-all" /><br>
-        <label for="datetime">Date and time (YYYY-MM-DD HH:MM:SS)</label>
-        <input type="text" name="datetime" id="datetime" value="" class="text ui-widget-content ui-corner-all" />
+	<form>
+	<fieldset>
+		<label for="title">Title</label>
+		<input type="text" name="title" id="title" class="text ui-widget-content ui-corner-all" /><br>
+		<label for="datetime">Date and time (YYYY-MM-DD HH:MM:SS)</label>
+		<input type="text" name="datetime" id="datetime" value="" class="text ui-widget-content ui-corner-all" />
 		<input type="hidden" name="token" id="token" value="<?=$_SESSION['token'];?>" />
-    </fieldset>
-    </form>
+	</fieldset>
+	</form>
 </div>
 
-<script type="text/javascript">
-function getCenteredCoords(width, height) {
-    var xPos = null;
-    var yPos = null;
-    if (window.ActiveXObject) {
-        xPos = window.event.screenX - (width/2) + 100;
-        yPos = window.event.screenY - (height/2) - 100;
-    } else {
-        var parentSize = [window.outerWidth, window.outerHeight];
-        var parentPos = [window.screenX, window.screenY];
-        xPos = parentPos[0] +
-            Math.max(0, Math.floor((parentSize[0] - width) / 2));
-        yPos = parentPos[1] +
-            Math.max(0, Math.floor((parentSize[1] - (height*1.25)) / 2));
-    }
-   return [xPos, yPos];
-}
-
-function openPopupWindow(openid) {
-  document.getElementById('ops').style.display = 'none';
-  var w = window.open('./openid_begin.php?openid_identifier='+encodeURIComponent(openid), 'openid_popup', 'width=450,height=500,location=1,status=1,resizable=yes');
-
-  var coords = getCenteredCoords(450,500);
-  w.moveTo(coords[0],coords[1]);
-}
-
-function openYahooWindow() {
-  openPopupWindow('yahoo.com');
-}
-
-function openMySpaceWindow() {
-  openPopupWindow('http://www.myspace.com/');
-}
-
-function openGoogleWindow() {
-  openPopupWindow('https://www.google.com/accounts/o8/id');
-}
-
-function handleOpenIDResponse(openid_args) {
-  document.getElementById('ops').style.display = 'none';
-  YAHOO.util.Connect.asyncRequest('GET', './openid_finish.php?'+openid_args,
-      {'success': function() {
-      		getEvents();
-         }});
-
-}
-
-</script>
+<div id="dialog-delete-event" title="Create new event">
+	<h id="title"></h>
+	<p id="time"></p>
+</div>
 </body>
 </html>
