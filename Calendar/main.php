@@ -60,9 +60,11 @@ function ready() {
 		events: [],
 		eventClick: function (calEvent) {
 			$("#dialog-delete-event").data("calEvent", calEvent);
-			$("#dialog-delete-event").attr("title", calEvent.title);
+			alert(calEvent.title);
+			alert(("#dialog-delete-event").attr('title'));
+			$("#dialog-delete-event").attr('title', calEvent.title);
 
-			$("time").html(calEvent.start);
+			$("#time").html(calEvent.start);
 
 			$("#dialog-delete-event").dialog('open');
 		}
@@ -117,8 +119,8 @@ function ready() {
 		modal: true,
 		buttons: {
 			"Delete this event": function (e) {
-
-				calEvent = $this.data("calEvent");
+				var $this = $(e.target),
+				    calEvent = $this.data("calEvent");
 
 				var r, date, datetime, xmlHttp;
 				r = confirm("TITLE: " + calEvent.title + "\nTIME: " + calEvent.start.getHours() + ":" + calEvent.start.getMinutes() + "\n\n" + "Delete this event?");
