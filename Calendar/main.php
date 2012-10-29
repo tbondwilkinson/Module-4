@@ -28,6 +28,8 @@ function getEventsCallback(event) {
 		return;
 	}
 
+	alert(event.target.responseText);
+
 	var json = JSON.parse(event.target.responseText);
 
 	alert(json.color);
