@@ -30,12 +30,15 @@ function getEventsCallback(event) {
 
 	var json = JSON.parse(event.target.responseText);
 
+	alert(json.color);
+
 	jQuery.each(json, function () {
 		$('#calendar').fullCalendar("renderEvent", {
 			id: this.year + this.month + this.day + this.hour + this.minute + this.second + this.title,
 			title:  this.title,
 			start: new Date(this.year, this.month, this.day, this.hour, this.minute, this.second),
-			color: json.color
+			color: json.color,
+			backgroundColor: json.color
 		}, true);
 	});
 }
