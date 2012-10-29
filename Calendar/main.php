@@ -72,15 +72,13 @@ function ready() {
 			date = event.start;
 			oldDatetime = date.getFullYear() + '-' +
 						('00' + (date.getMonth() + 1)).slice(-2) + '-' +
-						date.getDate() + ' ' +
+						(date.getDate() + 1) + ' ' +
 						('00' + date.getHours()).slice(-2) + ':' +
 						('00' + date.getMinutes()).slice(-2) + ':' +
 						('00' + date.getSeconds()).slice(-2);
 
-			alert(date.getDate());
-
 			oldDate = new Date();
-			oldDate.setDate(event.start.getDate() + dayDelta);
+			oldDate.setDate(event.start.getDate() + dayDelta + 1);
 
 			newDatetime = oldDate.getFullYear() + '-' +
 						('00' + (oldDate.getMonth() + 1)).slice(-2) + '-' +
