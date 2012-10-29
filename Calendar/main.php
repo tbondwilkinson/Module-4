@@ -34,7 +34,7 @@ function getEventsCallback(event) {
 		$('#calendar').fullCalendar("renderEvent", {
 			id: this.year + this.month + this.day + this.hour + this.minute + this.second + this.title,
 			title:  this.title,
-			start: new Date(this.year, this.month, this.day, this.hour, this.minute, this.second)
+			start: new Date(this.year, this.month, this.day, this.hour, this.minute, this.second),
 			color: json.color
 		}, true);
 	});
