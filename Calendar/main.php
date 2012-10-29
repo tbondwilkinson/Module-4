@@ -66,7 +66,7 @@ function ready() {
 
 			$("#dialog-delete-event").dialog('open');
 		},
-		eventDrop: function(event,dayDelta,minuteDelta,allDay,revertFunc) {
+		eventDrop: function (event, dayDelta, minuteDelta, allDay, revertFunc) {
 			var date, oldDate, xmlHttp, oldDatetime, newDatetime;
 
 			date = event.start;
@@ -91,7 +91,7 @@ function ready() {
 			xmlHttp.open("GET", "moveevent.php?title=" + event.title + "&oldDatetime=" + oldDatetime + "&newDatetime=" + newDatetime, true);
 			xmlHttp.addEventListener("load", function () {}, false);
 			xmlHttp.send(null);
-    	}
+		}
 	});
 
 	getEvents();
@@ -117,19 +117,18 @@ function ready() {
 		modal: true,
 		buttons: {
 			"Create an event": function () {
-				var bValid = true;
-				allFields.removeClass( "ui-state-error" );
-				
+				var bValid, xmlHttp;
+				bValid = true;
+				allFields.removeClass("ui-state-error");
 				bValid = bValid && checkRegexp(title, /^([0-9a-zA-Z_ ])+$/);
-				bValid = bValid && checkRegexp(datetime, /^\d{4}[-](0[1-9]|1[012])[-](0[1-9]|[12][0-9]|3[01])\s([01][1-9]|2[0123])[:]([0-5][0-9])[:]([0-5][0-9])$/);
-				
-				if ( bValid ) {
-					var xmlHttp = new XMLHttpRequest();
+				bValid = bValid && checkRegexp(datetime, /^\d{4}[\-](0[1-9]|1[012])[\-](0[1-9]|[12][0-9]|3[01])\s([01][1-9]|2[0123])[:]([0-5][0-9])[:]([0-5][0-9])$/);
 
-					xmlHttp.open("GET",  "newevent.php?title=" + title.val() + "&datetime=" + datetime.val() + "&token=" + token.val() + "&color=" + color.val());
+				if (bValid) {
+					xmlHttp = new XMLHttpRequest();
+					xmlHttp.open("GET", "newevent.php?title=" + title.val() + "&datetime=" + datetime.val() + "&token=" + token.val() + "&color=" + color.val());
 					xmlHttp.addEventListener("load", getEventsCallback, false);
 					xmlHttp.send(null);
-				    $( this ).dialog( "close" );
+				    $(this).dialog("close");
 				}
 			},
 			Cancel: function () {
