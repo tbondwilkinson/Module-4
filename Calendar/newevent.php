@@ -10,7 +10,7 @@ if($_SESSION['token'] != $_GET['token']) {
 	exit;
 }
 
-$stmt = $mysqli->prepare("INSERT INTO events (name, datetime, owner) VALUES (?, ?, ?)");
+$stmt = $mysqli->prepare("INSERT INTO events (name, datetime, owner, color) VALUES (?, ?, ?, ?)");
 
 if(!$stmt){
 	printf("Query Prep Failed: %s\n", $mysqli->error);
@@ -20,7 +20,8 @@ if(!$stmt){
 $name = $_GET['title'];
 $datetime = $_GET['datetime'];
 $owner = $_SESSION['identifier'];
-$stmt->bind_param('sss', $name, $datetime, $owner);
+$color = $_GET['color'];
+$stmt->bind_param('sss', $name, $datetime, $owner, $color);
 $stmt->execute();
 
 $stmt->close();
@@ -33,6 +34,7 @@ $events[0]['hour'] = substr($datetime, 11, 2);
 $events[0]['minute'] = substr($datetime, 14, 2);
 $events[0]['second'] = substr($datetime, 17, 2);
 $events[0]['title'] = htmlentities($name);
+$events[0]['color'] = $color;
 
 echo json_encode($events);
 ?>

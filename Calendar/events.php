@@ -7,7 +7,7 @@ if(!isset($_SESSION['identifier'])) {
 }
 
 // Use a prepared statement
-$stmt = $mysqli->prepare("SELECT name, datetime FROM events WHERE owner=?");
+$stmt = $mysqli->prepare("SELECT name, datetime, color FROM events WHERE owner=?");
 
 if(!$stmt){
 	printf("Query Prep Failed: %s\n", $mysqli->error);
@@ -20,7 +20,7 @@ $stmt->bind_param('s', $user);
 $stmt->execute();
 
 
-$stmt->bind_result($name, $datetime);
+$stmt->bind_result($name, $datetime, $color);
 
 $events = array();
 
@@ -34,6 +34,7 @@ while($stmt->fetch()) {
 	$events[$i]['minute'] = substr($datetime, 14, 2);
 	$events[$i]['second'] = substr($datetime, 17, 2);
 	$events[$i]['title'] = htmlentities($name);
+	$events[$i]['color'] = $color;
 
 	$i++;
 }

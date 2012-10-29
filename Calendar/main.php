@@ -35,6 +35,7 @@ function getEventsCallback(event) {
 			id: this.year + this.month + this.day + this.hour + this.minute + this.second + this.title,
 			title:  this.title,
 			start: new Date(this.year, this.month, this.day, this.hour, this.minute, this.second)
+			color: json.color
 		}, true);
 	});
 }
@@ -72,6 +73,7 @@ function ready() {
 	var title = $("#title"),
 		datetime = $("#datetime"),
 		token = $("#token"),
+		color = $("#color"),
 		allFields = $([]).add(title).add(datetime);
 
 	function checkRegexp(o, regexp) {
@@ -92,12 +94,12 @@ function ready() {
 				var bValid = true;
 				allFields.removeClass( "ui-state-error" );
 				
-				bValid = bValid && checkRegexp(title, /^([0-9a-zA-Z_ ])+$/, "Title may consist of a-z, 0-9, underscores, begin with a letter." );
-				bValid = bValid && checkRegexp(datetime, /^\d{4}[-](0[1-9]|1[012])[-](0[1-9]|[12][0-9]|3[01])\s([01][1-9]|2[0123])[:]([0-5][0-9])[:]([0-5][0-9])$/, "YYYY-MM-DD HH:MM:SS" );
+				bValid = bValid && checkRegexp(title, /^([0-9a-zA-Z_ ])+$/);
+				bValid = bValid && checkRegexp(datetime, /^\d{4}[-](0[1-9]|1[012])[-](0[1-9]|[12][0-9]|3[01])\s([01][1-9]|2[0123])[:]([0-5][0-9])[:]([0-5][0-9])$/;
 				
 				if ( bValid ) {
 					var xmlHttp = new XMLHttpRequest();
-					xmlHttp.open("GET",  "newevent.php?title=" + title.val() + "&datetime=" + datetime.val() + "&token=" + token.val());
+					xmlHttp.open("GET",  "newevent.php?title=" + title.val() + "&datetime=" + datetime.val() + "&token=" + token.val() + "&color=" + color.val());
 					xmlHttp.addEventListener("load", getEventsCallback, false);
 					xmlHttp.send(null);
 				    $( this ).dialog( "close" );
@@ -278,6 +280,14 @@ if (isset($_SESSION['identifier'])) {
 		<input type="text" name="title" id="title" class="text ui-widget-content ui-corner-all" /><br>
 		<label for="datetime">Date and time (YYYY-MM-DD HH:MM:SS)</label>
 		<input type="text" name="datetime" id="datetime" value="" class="text ui-widget-content ui-corner-all" />
+		<select name="color" id="color">
+		<option value="red" selected="selected">Red</option>
+		<option value="orange">Orange</option>
+		<option value="yellow">Yellow</option>
+		<option value="green">Green</option>
+		<option value="blue">Blue</option>
+		<option value="purple">Purple</option>
+		</select>
 		<input type="hidden" name="token" id="token" value="<?=$_SESSION['token'];?>" />
 	</fieldset>
 	</form>
