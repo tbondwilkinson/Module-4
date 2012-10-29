@@ -31,13 +31,11 @@ function getEventsCallback(event) {
 	var json = JSON.parse(event.target.responseText);
 
 	jQuery.each(json, function () {
-		alert(json.color);
 		$('#calendar').fullCalendar("renderEvent", {
 			id: this.year + this.month + this.day + this.hour + this.minute + this.second + this.title,
 			title:  this.title,
 			start: new Date(this.year, this.month, this.day, this.hour, this.minute, this.second),
-			color: json.color,
-			backgroundColor: json.color
+			color: this.color
 		}, true);
 	});
 }
