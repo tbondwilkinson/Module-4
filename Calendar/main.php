@@ -100,10 +100,6 @@ function ready() {
 				if ( bValid ) {
 					var xmlHttp = new XMLHttpRequest();
 
-					alert(color.val());
-
-					window.open("newevent.php?title=" + title.val() + "&datetime=" + datetime.val() + "&token=" + token.val() + "&color=" + color.val(), 'openid_popup', 'width=450,height=500,location=1,status=1,resizable=yes');
-
 					xmlHttp.open("GET",  "newevent.php?title=" + title.val() + "&datetime=" + datetime.val() + "&token=" + token.val() + "&color=" + color.val());
 					xmlHttp.addEventListener("load", getEventsCallback, false);
 					xmlHttp.send(null);

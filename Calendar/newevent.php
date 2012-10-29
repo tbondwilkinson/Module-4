@@ -21,7 +21,7 @@ $name = $_GET['title'];
 $datetime = $_GET['datetime'];
 $owner = $_SESSION['identifier'];
 $color = $_GET['color'];
-$stmt->bind_param('sss', $name, $datetime, $owner, $color);
+$stmt->bind_param('ssss', $name, $datetime, $owner, $color);
 $stmt->execute();
 
 $stmt->close();
