@@ -72,7 +72,7 @@ function ready() {
 			date = event.start;
 			alert(event.start);
 			alert(date.getHours());
-			alert(('00' + date.getHours().slice(-2));
+			alert(('00' + date.getHours().slice(-2)));
 			oldDatetime = date.getFullYear() + '-' +
 						('00' + (date.getMonth() + 1)).slice(-2) + '-' +
 						date.getDate() + ' ' +
