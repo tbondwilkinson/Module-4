@@ -78,6 +78,9 @@ function ready() {
 						('00' + date.getSeconds()).slice(-2);
 
 			alert(date.getDate());
+			alert(dayDelta);
+			alert(minuteDelta);
+			alert(allDay);
 
 			oldDate = new Date();
 			oldDate.setDate(event.start.getDate() - dayDelta);
