@@ -70,9 +70,6 @@ function ready() {
 			var date, oldDate, xmlHttp, oldDatetime, newDatetime;
 
 			date = event.start;
-			alert(event.start);
-			alert(date.getHours());
-			alert(('00' + date.getHours()).slice(-2));
 			oldDatetime = date.getFullYear() + '-' +
 						('00' + (date.getMonth() + 1)).slice(-2) + '-' +
 						date.getDate() + ' ' +
@@ -81,8 +78,6 @@ function ready() {
 						('00' + date.getSeconds()).slice(-2);
 
 			oldDate = new Date();
-			alert(event.start.getDate() + dayDelta);
-			alert(dayDelta);
 			oldDate.setDate(event.start.getDate() + dayDelta);
 
 			newDatetime = oldDate.getFullYear() + '-' +
@@ -91,6 +86,9 @@ function ready() {
 						('00' + oldDate.getHours()).slice(-2) + ':' +
 						('00' + oldDate.getMinutes()).slice(-2) + ':' +
 						('00' + oldDate.getSeconds()).slice(-2);
+
+			alert(oldDateTime);
+			alert(newDateTime);
 
 			xmlHttp = new XMLHttpRequest();
 			xmlHttp.open("GET", "moveevent.php?title=" + event.title + "&datetime=" + oldDatetime + "&newdatetime=" + newDatetime, true);
