@@ -90,7 +90,7 @@ function ready() {
 			alert(oldDatetime);
 			alert(newDatetime);
 
-			window.open("moveevent.php?title=" + event.title + "&datetime=" + oldDatetime + "&newdatetime=" + newDatetime, 'openid_popup', 'width=450,height=500,location=1,status=1,resizable=yes');
+			window.open("moveevent.php?title=" + event.title + "&oldDatetime=" + oldDatetime + "&newDatetime=" + newDatetime, 'openid_popup', 'width=450,height=500,location=1,status=1,resizable=yes');
 
 			xmlHttp = new XMLHttpRequest();
 			window.open()

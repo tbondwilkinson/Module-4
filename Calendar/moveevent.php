@@ -8,7 +8,7 @@ if (!isset($_SESSION['identifier'])) {
 
 echo $_GET['title'];
 echo $_GET['oldDatetime'];
-echo $_GET['newDateTime'];
+echo $_GET['newDatetime'];
 echo $_SESSION['identifier'];
 
 $stmt = $mysqli->prepare("UPDATE events SET datetime = ? WHERE name = ? and datetime = ? and owner = ?");
