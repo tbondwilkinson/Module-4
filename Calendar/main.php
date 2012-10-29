@@ -77,7 +77,7 @@ function ready() {
 						('00' + date.getMinutes()).slice(-2) + ':' +
 						('00' + date.getSeconds()).slice(-2);
 
-			oldDate = date;
+			oldDate = new Date(date);
 			oldDate.setDate(oldDate.getDate() - dayDelta);
 
 			oldDatetime = oldDate.getFullYear() + '-' +
