@@ -28,13 +28,10 @@ function getEventsCallback(event) {
 		return;
 	}
 
-	alert(event.target.responseText);
-
 	var json = JSON.parse(event.target.responseText);
 
-	alert(json.color);
-
 	jQuery.each(json, function () {
+		alert(json.color);
 		$('#calendar').fullCalendar("renderEvent", {
 			id: this.year + this.month + this.day + this.hour + this.minute + this.second + this.title,
 			title:  this.title,
