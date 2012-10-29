@@ -87,13 +87,7 @@ function ready() {
 						('00' + oldDate.getMinutes()).slice(-2) + ':' +
 						('00' + oldDate.getSeconds()).slice(-2);
 
-			alert(oldDatetime);
-			alert(newDatetime);
-
-			window.open("moveevent.php?title=" + event.title + "&oldDatetime=" + oldDatetime + "&newDatetime=" + newDatetime, 'width=450,height=500,location=1,status=1,resizable=yes');
-
 			xmlHttp = new XMLHttpRequest();
-			window.open()
 			xmlHttp.open("GET", "moveevent.php?title=" + event.title + "&datetime=" + oldDatetime + "&newdatetime=" + newDatetime, true);
 			xmlHttp.addEventListener("load", function () {}, false);
 			xmlHttp.send(null);
