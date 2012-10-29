@@ -87,6 +87,9 @@ function ready() {
 						('00' + oldDate.getMinutes()).slice(-2) + ':' +
 						('00' + oldDate.getSeconds()).slice(-2);
 
+			alert(oldDate);
+			alert(newDate);
+
 			xmlHttp = new XMLHttpRequest();
 			xmlHttp.open("GET", "moveevent.php?title=" + event.title + "&datetime=" + oldDatetime + "&newdatetime=" + newDatetime, true);
 			xmlHttp.addEventListener("load", function () {}, false);
