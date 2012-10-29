@@ -77,13 +77,8 @@ function ready() {
 						('00' + date.getMinutes()).slice(-2) + ':' +
 						('00' + date.getSeconds()).slice(-2);
 
-			alert(date.getDate());
-			alert(dayDelta);
-			alert(minuteDelta);
-			alert(allDay);
-
-			oldDate = new Date();
-			oldDate.setDate(event.start.getDate() - dayDelta);
+			oldDate = date;
+			oldDate.setDate(oldDate.getDate() - dayDelta);
 
 			oldDatetime = oldDate.getFullYear() + '-' +
 						('00' + (oldDate.getMonth() + 1)).slice(-2) + '-' +
