@@ -65,7 +65,34 @@ function ready() {
 			$("#time").text("Time: " + calEvent.start);
 
 			$("#dialog-delete-event").dialog('open');
-		}
+		},
+		eventDrop: function(event,dayDelta,minuteDelta,allDay,revertFunc) {
+
+		var date, oldDate, xmlHttp, oldDatetime, newDatetime;
+
+		date = event.start;
+		oldDatetime = date.getFullYear() + '-' +
+					('00' + (date.getMonth() + 1)).slice(-2) + '-' +
+					date.getDate() + ' ' +
+					('00' + date.getHours()).slice(-2) + ':' +
+					('00' + date.getMinutes()).slice(-2) + ':' +
+					('00' + date.getSeconds()).slice(-2);
+
+		oldDate = new Date();
+		oldDate.setDate(event.start.getDate() + dayDelta);
+
+		newDatetime = oldDate.getFullYear() + '-' +
+					('00' + (oldDate.getMonth() + 1)).slice(-2) + '-' +
+					oldDate.getDate() + ' ' +
+					('00' + oldDate.getHours()).slice(-2) + ':' +
+					('00' + oldDate.getMinutes()).slice(-2) + ':' +
+					('00' + oldDate.getSeconds()).slice(-2);
+
+		xmlHttp = new XMLHttpRequest();
+		xmlHttp.open("GET", "moveevent.php?title=" + calEvent.title + "&datetime=" + oldDatetime + "&newdatetime=" + newDatetime, true);
+		xmlHttp.addEventListener("load", function () {}, false);
+		xmlHttp.send(null);
+    }
 	});
 
 	getEvents();
