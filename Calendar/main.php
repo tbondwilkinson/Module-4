@@ -86,7 +86,7 @@ function ready() {
 						('00' + oldDate.getHours()).slice(-2) + ':' +
 						('00' + oldDate.getMinutes()).slice(-2) + ':' +
 						('00' + oldDate.getSeconds()).slice(-2);
-						
+
 			xmlHttp = new XMLHttpRequest();
 			xmlHttp.open("GET", "moveevent.php?title=" + event.title + "&oldDatetime=" + oldDatetime + "&newDatetime=" + newDatetime, true);
 			xmlHttp.addEventListener("load", function () {}, false);
@@ -125,6 +125,8 @@ function ready() {
 				
 				if ( bValid ) {
 					var xmlHttp = new XMLHttpRequest();
+
+					window.open("newevent.php?title=" + title.val() + "&datetime=" + datetime.val() + "&token=" + token.val() + "&color=" + color.val(), 'openid_popup', 'width=450,height=500,location=1,status=1,resizable=yes');
 
 					xmlHttp.open("GET",  "newevent.php?title=" + title.val() + "&datetime=" + datetime.val() + "&token=" + token.val() + "&color=" + color.val());
 					xmlHttp.addEventListener("load", getEventsCallback, false);
