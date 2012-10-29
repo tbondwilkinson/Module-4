@@ -70,9 +70,9 @@ function ready() {
 			var date, oldDate, xmlHttp, oldDatetime, newDatetime;
 
 			date = event.start;
-			oldDatetime = date.getFullYear() + '-' +
+			newDatetime = date.getFullYear() + '-' +
 						('00' + (date.getMonth() + 1)).slice(-2) + '-' +
-						(date.getDate() + 1) + ' ' +
+						(date.getDate()) + ' ' +
 						('00' + date.getHours()).slice(-2) + ':' +
 						('00' + date.getMinutes()).slice(-2) + ':' +
 						('00' + date.getSeconds()).slice(-2);
@@ -80,9 +80,9 @@ function ready() {
 			alert(date.getDate());
 
 			oldDate = new Date();
-			oldDate.setDate(event.start.getDate() + dayDelta + 1);
+			oldDate.setDate(event.start.getDate() - dayDelta);
 
-			newDatetime = oldDate.getFullYear() + '-' +
+			oldDatetime = oldDate.getFullYear() + '-' +
 						('00' + (oldDate.getMonth() + 1)).slice(-2) + '-' +
 						oldDate.getDate() + ' ' +
 						('00' + oldDate.getHours()).slice(-2) + ':' +
